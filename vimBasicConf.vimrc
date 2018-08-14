@@ -107,10 +107,11 @@
 	" Enable folding
 	set foldmethod=indent
 	set foldlevel=99
-	nnoremap <space> za	" Enable folding with the <space>
 
 	" 禁止生成临时文件
 	set nobackup
 	set noswapfile
+
+	set encoding=utf-8
 
 " }}}
