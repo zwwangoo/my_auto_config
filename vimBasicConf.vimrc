@@ -1,16 +1,16 @@
 " vundle settings {{{
 	" 设置包括vundle和初始化的runtiome path
-	set rtp+=~/.vim/bundle/Vundle.vim
+	set rtp+=$HOME/.vim/bundle/Vundle.vim
 	call vundle#begin()
 
 	Plugin 'VundleVim/Vundle.vim'
 
-	if filereadable('~/.vim/.vimrc.bundles')
-		source ~/.vim/.vimrc.bundles
+	if filereadable('$HOME/.vim/.vimrc.bundles')
+		source $HOME/.vim/.vimrc.bundles
 	endif
 
 	call vundle#end()
-	filetype plugin indent on
+	filetype indent on
 " }}}
 
 

@@ -23,15 +23,16 @@ function configVimBasic() {
 		sudo apt-get install -y vim
 	fi
 	sudo apt-get install -y git
-	if [ -d ~/.vim/bundle/Vundle.vim ]; then
+	if [ -d $HOME/.vim/bundle/Vundle.vim ]; then
 		echo -e '已经安装Vundle管理工具'
 	else
 		echo -e '安装Vundle管理工具'
-		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+		git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 	fi
 
 	echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
 	cat ./vimBasicConf.vimrc >> $HOME/.vimrc
+	cat ./vimrc.bundles >> $HOME/.vim/vimrc.bundles
 	mkdir -p $HOME/.vim/colors
 	cp ./joit.vim $HOME/.vim/colors/
 }
@@ -43,13 +44,13 @@ function configYouCompleteMe() {
 }
 
 function makeYouCompleteMe() {
-	echo -e "\33[32m编译自动补全插件YouCompleteMe\033[0m"
-	cd ~/.vim/bundle/YouCompleteMe
+	echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
+	cd $HOME/.vim/bundle/YouCompleteMe
 	./install.py --all
 }
 
 configVimBasic
 configYouCompleteMe
 echo -e "\033[32m正在进行插件安装……\033[0m"
-vim +PluginInstall +qall
+vim +PluginInstall 
 makeYouCompleteMe
