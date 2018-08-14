@@ -31,16 +31,13 @@ function configVimBasic() {
 	fi
 
 	echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
-	cat ./vim/vimBasicConf.txt > $HOME/.vimrc
+	cat ./vimBasicConf.vimrc > $HOME/.vimrc
+	if [ -d ~/.vim/colors ]; then
+		cp ./joit.vim ~/.vim/colors/
+	fi
 }
 
 function configYouCompleteMe() {
-	echo -e "\033[32m安装自动补全插件YouCompleteMe\033[0m"
-
-	sed -i "/^\" Github Plugin End/i\Plugin 'Valloric/YouCompleteMe'" $HOME/.vimrc
-
-	cat ./vim/YouCompleteMe_conf.txt >> $HOME/.vimrc
-
 	sudo apt-get install build-essential cmake
 	sudo apt-get install python-dev python3-dev
 }

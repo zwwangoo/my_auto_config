@@ -48,7 +48,7 @@
 	set cursorline
 	set cursorcolumn
 	" 颜色
-	# colorscheme joit
+	colorscheme joit
 	" 开启语法高亮
 	if has("syntax")
 		syntax on
