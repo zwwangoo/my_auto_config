@@ -1,0 +1,84 @@
+" YouCompleteMe {{{
+	Plugin 'Valloric/YouCompleteMe'
+
+	let g:ycm_autoclose_preview_window_after_completion=1
+    map <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    let g:ycm_key_invoke_completion = '<C-Space>'
+    let g:ycm_python_binary_path='python'
+    let g:ycm_filepath_completion_use_working_dir = 1
+    
+    let g:ycm_complete_in_comments = 1
+    let g:ycm_complete_in_strings = 1
+    let g:ycm_use_ultisnips_completer = 1
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    
+    let g:ycm_seed_identifiers_with_syntax=1
+    
+    let g:ycm_min_num_of_chars_for_completion=1
+
+    let g:ycm_goto_buffer_command = 'horizontal-split'
+    
+    if !exists("g:ycm_semantic_triggers")
+        let g:ycm_semantic_triggers = {}
+    endif
+    
+    let g:ycm_semantic_triggers =  {
+                \   'c' : ['->', '.'],
+                \   'objc' : ['->', '.'],
+                \   'ocaml' : ['.', '#'],
+                \   'cpp,objcpp' : ['->', '.', '::'],
+                \   'perl' : ['->'],
+                \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
+                \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+                \   'html': ['<', '"', '</', ' '],
+                \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+                \   'ruby' : ['.', '::'],
+                \   'lua' : ['.', ':'],
+                \   'erlang' : [':'],
+                \   'haskell' : ['.', 're!.']
+                \ }
+    
+    let python_highlight_all=1
+
+" }}}
+
+" nerdtree  {{{
+
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
+    
+    let mapleader = ','
+    nnoremap <F10> gt
+    nnoremap <F9> gT
+    nnoremap <leader>t : tabe<CR>
+    
+    map <F2> :NERDTreeToggle<CR>
+    map <Leader>t <plug>NERDTreeTabsToggle<CR>
+    map <Leader>f <plug>NERDTreeTabsFinde<CR>
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    let NERDTreeShowLineNumbers=1
+    let NERDTreeAutoCenter=0
+    let NERDTreeShowHidden=1
+    let NERDTreeWinSize=31
+    let g:nerdtree_tabs_open_on_console_startup=1
+    " let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+    let NERDTreeShowBookmarks=1
+    let NERDTreeMouseMode=2
+    let g:NERDTreeIndicatorMapCustom = {
+        \ "Modified"  : ">",
+        \ "Staged"    : "+",
+        \ "Untracked" : "-",
+        \ "Renamed"   : "$",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "x",
+        \ "Dirty"     : "*",
+        \ "Clean"     : "✔︎",
+        \ "Unknown"   : "?"
+        \ }
+
+" }}}
+
+
