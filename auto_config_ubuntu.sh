@@ -20,9 +20,9 @@ function configVimBasic() {
 	else
 		echo -e '\033[32m升级VIM\033[0m'
 		sudo apt-get remove vim-tiny vim-commoin
-		sudo apt-get install vim
+		sudo apt-get install -y vim
 	fi
-	sudo apt-get install git
+	sudo apt-get install -y git
 	if [ -d ~/.vim/bundle/Vundle.vim ]; then
 		echo -e '已经安装Vundle管理工具'
 	else
@@ -33,6 +33,9 @@ function configVimBasic() {
 	echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
 	cat ./vimBasicConf.vimrc > $HOME/.vimrc
 	if [ -d ~/.vim/colors ]; then
+		cp ./joit.vim ~/.vim/colors/
+	else
+		mkdir ./.vim/colors
 		cp ./joit.vim ~/.vim/colors/
 	fi
 }
