@@ -5,7 +5,7 @@
 
 	Plugin 'VundleVim/Vundle.vim'
 
-	if filereadable(enpand('$HOME/.vim/vimrc.bundles'))
+	if filereadable(expand('$HOME/.vim/vimrc.bundles'))
 		source $HOME/.vim/vimrc.bundles
 	endif
 
