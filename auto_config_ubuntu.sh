@@ -31,18 +31,15 @@ function configVimBasic() {
 	fi
 
 	echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
-	cat ./vimBasicConf.vimrc > $HOME/.vimrc
-	if [ -d ~/.vim/colors ]; then
-		cp ./joit.vim ~/.vim/colors/
-	else
-		mkdir ./.vim/colors
-		cp ./joit.vim ~/.vim/colors/
-	fi
+	cat ./vimBasicConf.vimrc >> $HOME/.vimrc
+	mkdir -p $HOME/.vim/colors
+	cp ./joit.vim $HOME/.vim/colors/
 }
 
 function configYouCompleteMe() {
 	sudo apt-get install -y build-essential cmake
 	sudo apt-get install -y python-dev python3-dev
+	sudo apt-get install -y exuberant-ctags
 }
 
 function makeYouCompleteMe() {
