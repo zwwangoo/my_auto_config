@@ -2,7 +2,7 @@
 
 function check() {
 	zshloc=$(which zsh)
-	if [ $zshloc = zsh ]; then
+	if [ $zshloc = /usr/bin/zsh ]; then
 		echo -e "系统监测已经安装zsh"
 		echo -e "你真棒，那我就不干啥啦，BayBay"
 		return 1
@@ -16,21 +16,18 @@ function install() {
 		sudo apt-get install -y zsh
 		wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 		chsh -s /bin/zsh
-		return 1
-	else
-		return 0
 	fi
 }
 
 function config() {
-	if install; then
-		cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
-		if [ -d $HOME/.zshrc ]; then
-			sed -i "s/^ZSH_THEME=\".*\"/ZSH_THEME=\"my\"/1" $HOME/.zshrc
-			sed -i "s/plugins=(.*?)/plugins=(git autojump history extract z)" $HOME/.zshrc
-		fi
-		exec $SHELL
+	sudo cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
+	if [ -f $HOME/.zshrc ]; then
+		sed -i "s/^ZSH_THEME=\".*\"/ZSH_THEME=\"my\"/1" $HOME/.zshrc
+		sed -i "s/plugins=(/plugins=(autojump history extract z/1" $HOME/.zshrc
+		touch $HOME/.z
 	fi
+	exec $SHELL
 }
 
+install
 config
