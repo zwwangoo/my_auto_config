@@ -1,9 +1,8 @@
-#!/bin/bash
+#jj/bin/bash
 
 function check() {
-	echo -e 'haha'
 	zshloc=$(which zsh)
-	if [ -L $zshloc ]; then
+	if [ $zshloc = zsh ]; then
 		echo -e "系统监测已经安装zsh"
 		echo -e "你真棒，那我就不干啥啦，BayBay"
 		return 1
@@ -14,7 +13,7 @@ function check() {
 
 function install() {
 	if check; then
-		sudo apt-get install zsh
+		sudo apt-get install -y zsh
 		wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 		chsh -s /bin/zsh
 		return 1
