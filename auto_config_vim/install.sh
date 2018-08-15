@@ -47,6 +47,7 @@ function makeYouCompleteMe() {
 	echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
 	cd $HOME/.vim/bundle/YouCompleteMe
 	./install.py --all
+	cp third_party/ycmd/examples/.ycm_extra_conf.py $HOME/
 }
 
 configVimBasic
