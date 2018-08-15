@@ -2,8 +2,8 @@
 	Plugin 'Valloric/YouCompleteMe'
 
 	let g:ycm_autoclose_preview_window_after_completion=1
+	let g:ycm_key_invoke_completion='<C-Space>'
     map <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    let g:ycm_key_invoke_completion = '<C-Space>'
     let g:ycm_python_binary_path='python'
     let g:ycm_filepath_completion_use_working_dir = 1
     
@@ -18,7 +18,11 @@
     let g:ycm_min_num_of_chars_for_completion=1
 
     let g:ycm_goto_buffer_command = 'horizontal-split'
-    
+
+	let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
     if !exists("g:ycm_semantic_triggers")
         let g:ycm_semantic_triggers = {}
     endif
@@ -49,24 +53,23 @@
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     
-    let mapleader = ','
-    nnoremap <F10> gt
-    nnoremap <F9> gT
-    nnoremap <leader>t : tabe<CR>
-    
     map <F2> :NERDTreeToggle<CR>
-    map <Leader>t <plug>NERDTreeTabsToggle<CR>
-    map <Leader>f <plug>NERDTreeTabsFinde<CR>
+
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
     let NERDTreeShowLineNumbers=1
+	let NERDTreeMinimalUI=1
     let NERDTreeAutoCenter=0
     let NERDTreeShowHidden=1
     let NERDTreeWinSize=31
-    let g:nerdtree_tabs_open_on_console_startup=1
-    " let NERDTreeIgnore=['\.pyc','\~$','\.swp']
     let NERDTreeShowBookmarks=1
     let NERDTreeMouseMode=2
+	let NERDTreeIgnore=['\.pyc$', '\~$']
+	let NERDTreeShowHidden=1
+	let NERDTreeAutoDeleteBuffer=1
+    let g:nerdtree_tabs_open_on_console_startup=1
     let g:NERDTreeIndicatorMapCustom = {
         \ "Modified"  : ">",
         \ "Staged"    : "+",
@@ -81,4 +84,51 @@
 
 " }}}
 
+" syntastic {{{
 
+	Plugin 'vim-syntastic/syntastic'
+
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+" }}}
+
+" taglist {{{
+	Plugin 'vim-scripts/taglist.vim'
+
+	let Tlist_Use_Right_Window=1
+	let Tlist_File_Fold_Auto_Close=1
+	let Tlist_Exit_OnlyWindow=1
+	let Tlist_WinWidth=32
+	let Tlist_Ctags_Cmd='/usr/bin/ctags'
+	" let Tlist_Auto_Open=1
+" }}}
+
+" other {{{
+
+	
+	Plugin 'vim-airline/vim-airline'
+	Plugin 'vim-airline/vim-airline-themes'
+	" Plugin 'scrooloose/nerdtree'
+	Plugin 'tmhedberg/SimpylFold'
+	Plugin 'vim-scripts/indentpython.vim'
+	Plugin 'nvie/vim-flake8'
+	Plugin 'kien/ctrlp.vim'
+
+	" airline 状态栏
+	" 需要安装补丁字体 powerline/fonts
+	set laststatus=2
+	set t_Co=256
+	let g:airline_powerline_fonts=1
+	let g:airline_theme='bubblegum'
+	"let g:airline_left_sep='>'
+
+	let g:nerdtree_tabs_open_on_gui_startup=1
+	" 自动折叠插件 SimpylFold
+	let g:SimpyFold_docstring_preview=1		" 显示折叠代码的文档字符串
+" }}}

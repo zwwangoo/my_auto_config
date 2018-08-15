@@ -51,6 +51,9 @@ function makeYouCompleteMe() {
 
 configVimBasic
 configYouCompleteMe
+
 echo -e "\033[32m正在进行插件安装……\033[0m"
+
 vim +PluginInstall 
+
 makeYouCompleteMe
