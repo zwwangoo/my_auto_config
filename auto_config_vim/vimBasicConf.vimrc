@@ -66,6 +66,7 @@
 	" set selection=exclusive
 	" set selectmode=mouse,key
 	set autowrite
+	set encoding=utf-8
 " }}}
 
 " au BufNewFile,BufRead *.py
