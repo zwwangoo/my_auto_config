@@ -1,4 +1,4 @@
-#jj/bin/bash
+#!/bin/bash
 
 function check() {
 	zshloc=$(which zsh)

@@ -23,7 +23,7 @@ function configVimBasic() {
 		sudo apt-get install -y vim
 	fi
 	sudo apt-get install -y git
-	if [ -d $HOME/.vim/bundle/Vundle.vim ]; then
+	if [ -f $HOME/.vim/bundle/Vundle.vim ]; then
 		echo -e '已经安装Vundle管理工具'
 	else
 		echo -e '安装Vundle管理工具'
