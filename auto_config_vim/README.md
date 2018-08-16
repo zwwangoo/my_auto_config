@@ -1,7 +1,7 @@
 # Vim的自动部署脚本
 
 ## 安装与配置
-`sudo ./install.sh`
+`sudo bash install.sh`
 
 ## vim的使用教程
 
