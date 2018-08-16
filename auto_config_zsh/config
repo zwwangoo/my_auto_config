@@ -3,9 +3,8 @@
 function check() {
     zshloc=$(which zsh)
     if [ $zshloc = /usr/bin/zsh ]; then
-        echo -e "系统监测已经安装zsh"
-        echo -e "你真棒，那我就不干啥啦，BayBay"
-        return 1
+		echo -e "系统监测已经安装zsh"
+		return 1
     else
         return 0
     fi
