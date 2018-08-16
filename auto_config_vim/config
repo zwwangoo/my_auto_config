@@ -1,64 +1,64 @@
 #!/bin/bash
 
 function checkVimVersion() {
-	vimloc=$(which vim || which vi)
-	while [ -L $vimloc ]; do
-		vimloc=$(ls -l $vimloc | sed -r 's/.+-> ([^ ]+).*/\1/')
-	done
-	vimViersion=$(echo $vimloc | sed -r 's/.+vim\.(.+)/\1/')
-	echo -e "\033[32m vim version: $vimViersion\033[0m"
-	if [ $vimViersion = basic ]; then
-		return 0
-	else
-		return 1
-	fi
+    vimloc=$(which vim || which vi)
+    while [ -L $vimloc ]; do
+        vimloc=$(ls -l $vimloc | sed -r 's/.+-> ([^ ]+).*/\1/')
+    done
+    vimViersion=$(echo $vimloc | sed -r 's/.+vim\.(.+)/\1/')
+    echo -e "\033[32m vim version: $vimViersion\033[0m"
+    if [ $vimViersion = basic ]; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 function configVimBasic() {
-	if checkVimVersion; then
-		echo -e '\033[32m无需升级VIM\033[0m'
-	else
-		echo -e '\033[32m升级VIM\033[0m'
-		apt-get remove vim-tiny vim-commoin
-		apt-get install -y vim
-	fi
-	if [ -f $HOME/.vim/bundle/Vundle.vim ]; then
-		echo -e '已经安装Vundle管理工具'
-	else
-		echo -e '安装Vundle管理工具'
-		git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-	fi
+    if checkVimVersion; then
+        echo -e '\033[32m无需升级VIM\033[0m'
+    else
+        echo -e '\033[32m升级VIM\033[0m'
+        apt-get remove vim-tiny vim-commoin
+        apt-get install -y vim
+    fi
+    if [ -f $HOME/.vim/bundle/Vundle.vim ]; then
+        echo -e '已经安装Vundle管理工具'
+    else
+        echo -e '安装Vundle管理工具'
+        git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+    fi
 
-	echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
-	if [ -f $HOME/.vimrc ]; then
-		mv $HOME/.vimrc $HOME/.vimrc.bak
-	fi
-	cp ./vimBasicConf.vimrc $HOME/.vimrc
-	cp ./vimrc.bundles $HOME/.vim/vimrc.bundles
-	mkdir -p $HOME/.vim/colors
-	cp ./joit.vim $HOME/.vim/colors/
+    echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
+    if [ -f $HOME/.vimrc ]; then
+        mv $HOME/.vimrc $HOME/.vimrc.bak
+    fi
+    cp ./vimBasicConf.vimrc $HOME/.vimrc
+    cp ./vimrc.bundles $HOME/.vim/vimrc.bundles
+    mkdir -p $HOME/.vim/colors
+    cp ./joit.vim $HOME/.vim/colors/
 }
 
 function configYouCompleteMe() {
-	apt-get install -y build-essential cmake
-	apt-get install -y python-dev python3-dev
-	apt-get install -y exuberant-ctags
+    apt-get install -y build-essential cmake
+    apt-get install -y python-dev python3-dev
+    apt-get install -y exuberant-ctags
 }
 
 function makeYouCompleteMe() {
-	echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
-	cd $HOME/.vim/bundle/YouCompleteMe
-	./install.py --all
-	echo -e "\033[32m编译完成！\033[0m"
-	# 注释掉.ycm_extra_conf.py中的选项
-	cp third_party/ycmd/examples/.ycm_extra_conf.py $HOME/.ycm_extra_conf.py
-	num=$(sed -n "/final_flags.remove/=" $HOME/.ycm_extra_conf.py)
-	sed -i "$(expr $num - 1),$(expr $num + 2) s/^/#/" $HOME/.ycm_extra_conf.py
-	# 添加库所在的flags
-	num=$(sed -n "/^]/=" $HOME/.ycm_extra_conf.py)
-	gcc_version=$(sed -r "s/.+gcc version ([0-9\.]+).+/\1/" /proc/version)
-	sed -i "$num i# add by qiuyu\n'-isystem',\n'/usr/include',\n'-isystem',\n'/usr/include/x86_64-linux-gnu',\n'-isystem',\n'/usr/include/c++/$gcc_version',\n'-isystem',\n'/usr/include/c++/$gcc_version/backward',\n'-isystem',\n'/usr/include/x86_64-linux-gnu/c++/$gcc_version',\n'-isystem',\n'/usr/local/include'," $HOME/.ycm_extra_conf.py
-	cd $HOME
+    echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
+    cd $HOME/.vim/bundle/YouCompleteMe
+    ./install.py --all
+    echo -e "\033[32m编译完成！\033[0m"
+    # 注释掉.ycm_extra_conf.py中的选项
+    cp third_party/ycmd/examples/.ycm_extra_conf.py $HOME/.ycm_extra_conf.py
+    num=$(sed -n "/final_flags.remove/=" $HOME/.ycm_extra_conf.py)
+    sed -i "$(expr $num - 1),$(expr $num + 2) s/^/#/" $HOME/.ycm_extra_conf.py
+    # 添加库所在的flags
+    num=$(sed -n "/^]/=" $HOME/.ycm_extra_conf.py)
+    gcc_version=$(sed -r "s/.+gcc version ([0-9\.]+).+/\1/" /proc/version)
+    sed -i "$num i# add by qiuyu\n'-isystem',\n'/usr/include',\n'-isystem',\n'/usr/include/x86_64-linux-gnu',\n'-isystem',\n'/usr/include/c++/$gcc_version',\n'-isystem',\n'/usr/include/c++/$gcc_version/backward',\n'-isystem',\n'/usr/include/x86_64-linux-gnu/c++/$gcc_version',\n'-isystem',\n'/usr/local/include'," $HOME/.ycm_extra_conf.py
+    cd $HOME
 }
 
 configVimBasic
