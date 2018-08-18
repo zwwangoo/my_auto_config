@@ -22,7 +22,7 @@ function configVimBasic() {
         apt-get remove vim-tiny vim-commoin
         apt-get install -y vim
     fi
-    if [ -f $HOME/.vim/bundle/Vundle.vim ]; then
+    if [ -d $HOME/.vim/bundle/Vundle.vim ]; then
         echo -e '已经安装Vundle管理工具'
     else
         echo -e '安装Vundle管理工具'
@@ -50,14 +50,8 @@ function makeYouCompleteMe() {
     cd $HOME/.vim/bundle/YouCompleteMe
     ./install.py --all
     echo -e "\033[32m编译完成！\033[0m"
-    # 注释掉.ycm_extra_conf.py中的选项
     cp third_party/ycmd/examples/.ycm_extra_conf.py $HOME/.ycm_extra_conf.py
-    num=$(sed -n "/final_flags.remove/=" $HOME/.ycm_extra_conf.py)
-    sed -i "$(expr $num - 1),$(expr $num + 2) s/^/#/" $HOME/.ycm_extra_conf.py
-    # 添加库所在的flags
-    num=$(sed -n "/^]/=" $HOME/.ycm_extra_conf.py)
-    gcc_version=$(sed -r "s/.+gcc version ([0-9\.]+).+/\1/" /proc/version)
-    sed -i "$num i# add by qiuyu\n'-isystem',\n'/usr/include',\n'-isystem',\n'/usr/include/x86_64-linux-gnu',\n'-isystem',\n'/usr/include/c++/$gcc_version',\n'-isystem',\n'/usr/include/c++/$gcc_version/backward',\n'-isystem',\n'/usr/include/x86_64-linux-gnu/c++/$gcc_version',\n'-isystem',\n'/usr/local/include'," $HOME/.ycm_extra_conf.py
+	echo -e "\033[32m任务完成，请尽情的使用吧！"
     cd $HOME
 }
 
