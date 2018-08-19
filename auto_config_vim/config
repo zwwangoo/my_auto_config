@@ -51,7 +51,7 @@ function makeYouCompleteMe() {
     ./install.py --all
     echo -e "\033[32m编译完成！\033[0m"
     cp third_party/ycmd/examples/.ycm_extra_conf.py $HOME/.ycm_extra_conf.py
-	echo -e "\033[32m任务完成，请尽情的使用吧！"
+    echo -e "\033[32m任务完成，请尽情的使用吧！"
     cd $HOME
 }
 
