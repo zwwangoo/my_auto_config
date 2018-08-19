@@ -25,7 +25,7 @@ case $1 in
 		cd ./auto_config_vim && bash config && cd ../
 		sleep 5
 		echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-		echo -e "正在安装VIM……"
+		echo -e "正在安装ZSH……"
 		echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 		cd ./auto_config_zsh && bash config && cd ../
