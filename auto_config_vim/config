@@ -59,7 +59,18 @@ configVimBasic
 configYouCompleteMe
 
 echo -e "\033[32m正在进行插件安装……\033[0m"
-
 vim +PluginInstall +qall 
 
-makeYouCompleteMe
+case $1 in
+	-v)
+		ins_ycm=false
+		echo "本次将不会重新编译YouCompleteMe！"
+		;;
+	-all | *)
+		ins_ycm=true
+		;;
+esac
+
+if $ins_ycm; then
+	makeYouCompleteMe
+fi

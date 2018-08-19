@@ -19,7 +19,7 @@ function install() {
 }
 
 function config() {
-    sudo cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
+    cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
     if [ -f $HOME/.zshrc ]; then
         sed -i "s/^ZSH_THEME=\".*\"/ZSH_THEME=\"my\"/1" $HOME/.zshrc
         sed -i "s/plugins=(/plugins=(autojump history extract z/1" $HOME/.zshrc
