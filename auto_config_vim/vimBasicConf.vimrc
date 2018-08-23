@@ -2,8 +2,6 @@
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
-    "call vundle#begin('~/some/path/here')
-
     Plugin 'VundleVim/Vundle.vim'
 
     if filereadable(expand('$HOME/.vim/vimrc.bundles'))
@@ -29,6 +27,7 @@
     nmap <Leader>m :nohl<CR>
     vnoremap <Leader>y "+y
     nmap <Leader>p "+p
+	nmap <Leader>s :Gblame<CR>
 " }}}
 
 " vim options {{{
@@ -52,14 +51,14 @@
     set showmatch
     set hlsearch
     set autoindent
-    set smartindent "智能缩进"
-    set cindent "C语言风格缩进"
+    set smartindent 
+    set cindent
     set shiftwidth=4
     set tabstop=4
     set softtabstop=4
     set foldmethod=indent
     set foldlevel=99
-    nnoremap <space> za    " Enable folding with the <space>
+	nnoremap <space> za	" Enable folding with the <space>
     set nobackup
     set noswapfile
     " set mouse=a

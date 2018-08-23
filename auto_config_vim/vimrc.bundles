@@ -109,12 +109,15 @@
     " let Tlist_Auto_Open=1
 " }}}
 
+" vim-fugitive {{{
+	Plugin 'tpope/vim-fugitive'
+" }}}
+
 " other {{{
 
     
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    " Plugin 'scrooloose/nerdtree'
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/indentpython.vim'
     Plugin 'nvie/vim-flake8'
