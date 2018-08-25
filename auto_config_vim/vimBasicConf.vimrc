@@ -39,7 +39,11 @@
 
     set cursorline
     set cursorcolumn
-    colorscheme joit
+
+	if filereadable(expend('$HOME/.vim/colors/jellybeans.vim'))
+		colorscheme jellybeans
+	endif
+
     if has("syntax")
         syntax on
         let python_highlight_all=1
