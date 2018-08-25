@@ -40,7 +40,7 @@
     set cursorline
     set cursorcolumn
 
-	if filereadable(expend('$HOME/.vim/colors/jellybeans.vim'))
+	if filereadable(expand('$HOME/.vim/colors/jellybeans.vim'))
 		colorscheme jellybeans
 	endif
 

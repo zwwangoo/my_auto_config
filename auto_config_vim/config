@@ -36,7 +36,7 @@ function configVimBasic() {
     cp ./vimBasicConf.vimrc $HOME/.vimrc
     cp ./vimrc.bundles $HOME/.vim/vimrc.bundles
     mkdir -p $HOME/.vim/colors
-    cp ./joit.vim $HOME/.vim/colors/
+    cp ./jellybeans.vim $HOME/.vim/colors/
 }
 
 function configYouCompleteMe() {
