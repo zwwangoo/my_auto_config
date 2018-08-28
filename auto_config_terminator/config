@@ -2,9 +2,9 @@
 
 function configTerminatorLoc() {
 
-	terminatorLoc=$(which terminator)
-	if [ -L $terminatorLoc ]; then
-		echo "已经安装了terminatorLoc"
+	terminatorLoc=$(which terminator | sed -r 's/.*(terminator)/\1/')
+	if [ $terminatorLoc = terminator ]; then
+		echo "已经安装了terminator"
 	else
 		apt-get install -y terminator ttf-wqy-microhei
 	fi
