@@ -1,0 +1,54 @@
+[global_config]
+  borderless = True
+  enabled_plugins = CustomCommandsMenu, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  handle_size = 1
+  hide_from_taskbar = True
+  inactive_color_offset = 1.0
+  suppress_multiple_term_dialog = True
+  title_font = Sans 14
+  title_transmit_bg_color = "#3e3838"
+  title_transmit_fg_color = "#000000"
+  window_state = maximise
+[keybindings]
+  close_term = <Super>c
+  cycle_next = None
+  cycle_prev = None
+  go_down = <Alt>j
+  go_left = <Alt>h
+  go_right = <Alt>l
+  go_up = <Alt>k
+  help = None
+  layout_launcher = None
+  resize_down = <Alt>Down
+  resize_left = <Alt>Left
+  resize_right = <Alt>Right
+  resize_up = <Alt>Up
+  split_horiz = <Alt>o
+  split_vert = <Alt>e
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.69
+    background_image = None
+    background_type = transparent
+    copy_on_selection = True
+    cursor_color = "#ffffff"
+    custom_command = tmux
+    font = 文泉驿等宽微米黑 12
+    foreground_color = "#ffffff"
+    icon_bell = False
+    login_shell = True
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

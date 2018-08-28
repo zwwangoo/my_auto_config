@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function configTerminatorLoc() {
+
+	terminatorLoc=$(which terminator)
+	if [ -L $terminatorLoc ]; then
+		echo "已经安装了terminatorLoc"
+	else
+		apt-get install -y terminator ttf-wqy-microhei
+	fi
+
+	if [ -d $HOMT/.config/terminator/config ]; then
+		mv $HOME/.config/terminator/config $HOME/.config/terminator/config.bak
+	else
+		mkdir -p $HOME/.config/terminator
+	fi
+	cp ./terminator_config $HOME/.config/terminator/config
+}
+
+
+configTerminatorLoc
