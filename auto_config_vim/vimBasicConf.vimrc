@@ -1,22 +1,3 @@
-" vundle settings {{{
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-
-    Plugin 'VundleVim/Vundle.vim'
-
-    if filereadable(expand('$HOME/.vim/vimrc.bundles'))
-        source $HOME/.vim/vimrc.bundles
-    endif
-
-
-    call vundle#end()
-
-    filetype indent on
-
-    " filetype plugin on
-
-" }}}
-
 " vim map {{{
     let mapleader=";"
     nmap <Leader>q :q<CR>
@@ -27,23 +8,40 @@
     nmap <Leader>m :nohl<CR>
     vnoremap <Leader>y "+y
     nmap <Leader>p "+p
-	nmap <Leader>s :Gblame<CR>
+" }}}
+
+" vundle settings {{{
+    set rtp+=$HOME/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
+    "call vundle#begin('~/some/path/here')
+
+    Plugin 'VundleVim/Vundle.vim'
+
+    if filereadable(expand('$HOME/.vim/vimrc.bundles'))
+        source $HOME/.vim/vimrc.bundles
+    endif
+
+
+    call vundle#end()
+
+    " filetype indent on
+
+    filetype plugin on
+
 " }}}
 
 " vim options {{{
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    set shortmess=atI   
+    set nocompatible
+    " set shortmess=atI   
     set autoread
 
     filetype off
 
     set cursorline
     set cursorcolumn
-
-	if filereadable(expand('$HOME/.vim/colors/jellybeans.vim'))
-		colorscheme jellybeans
-	endif
-
+    colorscheme jellybeans
     if has("syntax")
         syntax on
         let python_highlight_all=1
@@ -55,14 +53,14 @@
     set showmatch
     set hlsearch
     set autoindent
-    set smartindent 
+    set smartindent
     set cindent
     set shiftwidth=4
     set tabstop=4
     set softtabstop=4
     set foldmethod=indent
     set foldlevel=99
-	nnoremap <space> za	" Enable folding with the <space>
+    nnoremap <space> za    " Enable folding with the <space>
     set nobackup
     set noswapfile
     " set mouse=a
@@ -71,6 +69,7 @@
     set autowrite
     set encoding=utf-8
 " }}}
+
 
 " fcitx-auto {{{
     "##### auto fcitx  ###########
@@ -97,15 +96,17 @@
     "##### auto fcitx end ######
 " }}}
 
-" au BufNewFile,BufRead *.py
-"     \ set tabstop=4 |
-"     \ set softtabstop=4 |
-"     \ set shiftwidth=4 |
-"     \ set autoindent |
-"     \ set fileformat=unix
-" 
-" au BufNewFile,BufRead *.js, *.html, *.css, *.yml
-"     \ set tabstop=2 |
-"     \ set softtabstop=2 |
-"     \ set shiftwidth=2
-" 
+" {{{
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set autoindent |
+    \ set fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css, *.yml
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+" }}}
