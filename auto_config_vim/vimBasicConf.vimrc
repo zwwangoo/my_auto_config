@@ -25,9 +25,9 @@
 
     call vundle#end()
 
-    " filetype indent on
+    filetype indent on
 
-    filetype plugin on
+    " filetype plugin on
 
 " }}}
 

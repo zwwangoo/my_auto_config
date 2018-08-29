@@ -14,7 +14,6 @@ function install() {
     if check; then
         apt-get install -y zsh
         wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-        chsh -s /bin/zsh
     fi
 }
 
@@ -26,6 +25,8 @@ function config() {
         touch $HOME/.z
     fi
     exec $SHELL
+    chsh -s /bin/zsh
+	exit
 }
 
 install
