@@ -92,6 +92,10 @@
     Plugin 'tpope/vim-fugitive'
     nmap <Leader>s :Gblame<CR>
 " }}}
+" {{{
+	Plugin 'dyng/ctrlsf.vim'
+	nnoremap <C-f> :CtrlSF<Space>
+" }}}
 " other {{{
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
