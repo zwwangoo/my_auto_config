@@ -37,7 +37,6 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.69
     background_image = None
     background_type = transparent
     copy_on_selection = True

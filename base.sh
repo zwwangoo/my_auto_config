@@ -9,6 +9,7 @@ case $1 in
 		dpkg -i sogoupinyin_2.2.0.0108_amd64.deb
 		apt install -f 
 		dpkg -i sogoupinyin_2.2.0.0108_amd64.deb
+		rm sogoupinyin_2.2.0.0108_amd64.deb
 		;;
 	-zsh)
 		echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
