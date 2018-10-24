@@ -25,7 +25,7 @@
 
     call vundle#end()
 
-    filetype indent on
+    filetype plugin indent on
 
     " filetype plugin on
 
@@ -48,7 +48,7 @@
     endif
     set number
     set showcmd
-    set scrolloff=3
+    set scrolloff=18
     set backspace=indent,eol,start
     set showmatch
     set hlsearch
@@ -67,6 +67,7 @@
     " set selection=exclusive
     " set selectmode=mouse,key
     set autowrite
+    set autoread
     set encoding=utf-8
 " }}}
 
