@@ -1,27 +1,39 @@
 #!/bin/bash
 
-function checkVimVersion() {
-    vimloc=$(which vim || which vi)
-    while [ -L $vimloc ]; do
-        vimloc=$(ls -l $vimloc | sed -r 's/.+-> ([^ ]+).*/\1/')
-    done
-    vimViersion=$(echo $vimloc | sed -r 's/.+vim\.(.+)/\1/')
-    echo -e "\033[32m vim version: $vimViersion\033[0m"
-    if [ $vimViersion = basic ]; then
-        return 0
-    else
-        return 1
-    fi
+
+function installPrerequisite() {
+	apt remove -y vim vim-tiny vim-runtime vim-common
+    apt-get install -y python-dev python3-dev libncurses5-dev libgnome2-dev \
+		libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+		libcairo2-dev libx11-dev libxpm-dev libxt-dev build-essential cmake \
+		ruby-dev lua5.1 liblua5.1-dev libperl-dev exuberant-ctags ack-grep 
 }
 
+
+function installVim() {
+	cd $HOME
+	if [ -d $HEOM/vim ]; then
+		echo -e 'vim 已经clone'
+	else
+		git clone https://github.com/vim/vim.git
+	fi
+	cd vim
+	./configure --with-features=huge \
+			--enable-multibyte \
+			--enable-rubyinterp=yes \
+			--enable-pythoninterp=yes \
+			--with-python-config-dir=/usr/lib/python2.7/config \
+			--enable-python3interp=yes \
+			--with-python3-config-dir=/usr/lib/python3.5/config \
+			--enable-perlinterp=yes \
+			--enable-luainterp=yes \
+			--enable-gui=gtk2 \
+			--enable-cscope \
+		    --prefix=/usr/local
+}
+
+
 function configVimBasic() {
-    if checkVimVersion; then
-        echo -e '\033[32m无需升级VIM\033[0m'
-    else
-        echo -e '\033[32m升级VIM\033[0m'
-        apt-get remove vim-tiny vim-commoin
-        apt-get install -y vim
-    fi
     if [ -d $HOME/.vim/bundle/Vundle.vim ]; then
         echo -e '已经安装Vundle管理工具'
     else
@@ -39,12 +51,6 @@ function configVimBasic() {
     cp ./jellybeans.vim $HOME/.vim/colors/
 }
 
-function configYouCompleteMe() {
-    apt-get install -y build-essential cmake
-    apt-get install -y python-dev python3-dev
-    apt-get install -y exuberant-ctags
-	apt-get install -y ack-grep
-}
 
 function makeYouCompleteMe() {
     echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
@@ -56,6 +62,8 @@ function makeYouCompleteMe() {
     cd $HOME
 }
 
+installPrerequisite
+installVim
 configVimBasic
 configYouCompleteMe
 
