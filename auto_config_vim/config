@@ -1,35 +1,38 @@
 #!/bin/bash
 
+AUTOPATH=$(pwd)
+
 
 function installPrerequisite() {
-	apt remove -y vim vim-tiny vim-runtime vim-common
+    apt remove -y vim vim-tiny vim-runtime vim-common
     apt-get install -y python-dev python3-dev libncurses5-dev libgnome2-dev \
-		libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-		libcairo2-dev libx11-dev libxpm-dev libxt-dev build-essential cmake \
-		ruby-dev lua5.1 liblua5.1-dev libperl-dev exuberant-ctags ack-grep 
+        libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+        libcairo2-dev libx11-dev libxpm-dev libxt-dev build-essential cmake \
+        ruby-dev lua5.1 liblua5.1-dev libperl-dev exuberant-ctags ack-grep 
 }
 
 
 function installVim() {
-	cd $HOME
-	if [ -d $HEOM/vim ]; then
-		echo -e 'vim 已经clone'
-	else
-		git clone https://github.com/vim/vim.git
-	fi
-	cd vim
-	./configure --with-features=huge \
-			--enable-multibyte \
-			--enable-rubyinterp=yes \
-			--enable-pythoninterp=yes \
-			--with-python-config-dir=/usr/lib/python2.7/config \
-			--enable-python3interp=yes \
-			--with-python3-config-dir=/usr/lib/python3.5/config \
-			--enable-perlinterp=yes \
-			--enable-luainterp=yes \
-			--enable-gui=gtk2 \
-			--enable-cscope \
-		    --prefix=/usr/local
+    cd $HOME
+    if [ -d vim ]; then
+        echo -e 'vim 已经clone'
+		return 0
+    else
+        git clone https://github.com/vim/vim.git
+    fi
+    cd vim
+    ./configure --with-features=huge \
+            --enable-multibyte \
+            --enable-rubyinterp=yes \
+            --enable-pythoninterp=yes \
+            --with-python-config-dir=/usr/lib/python2.7/config \
+            --enable-python3interp=yes \
+            --with-python3-config-dir=/usr/lib/python3.5/config \
+            --enable-perlinterp=yes \
+            --enable-luainterp=yes \
+            --enable-gui=gtk2 \
+            --enable-cscope \
+            --prefix=/usr/local
 }
 
 
@@ -45,6 +48,7 @@ function configVimBasic() {
     if [ -f $HOME/.vimrc ]; then
         mv $HOME/.vimrc $HOME/.vimrc.bak
     fi
+    cd $AUTOPATH
     cp ./vimBasicConf.vimrc $HOME/.vimrc
     cp ./vimrc.bundles $HOME/.vim/vimrc.bundles
     mkdir -p $HOME/.vim/colors
@@ -62,6 +66,7 @@ function makeYouCompleteMe() {
     cd $HOME
 }
 
+
 installPrerequisite
 installVim
 configVimBasic
@@ -71,15 +76,16 @@ echo -e "\033[32m正在进行插件安装……\033[0m"
 vim +PluginInstall +qall 
 
 case $1 in
-	-v)
-		ins_ycm=false
-		echo "本次将不会重新编译YouCompleteMe！"
-		;;
-	-all | *)
-		ins_ycm=true
-		;;
+    -v)
+        ins_ycm=false
+        echo "本次将不会重新编译YouCompleteMe！"
+        ;;
+    -all | *)
+        ins_ycm=true
+        ;;
 esac
 
 if $ins_ycm; then
-	makeYouCompleteMe
+    makeYouCompleteMe
 fi
+
