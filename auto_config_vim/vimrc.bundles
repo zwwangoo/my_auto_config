@@ -2,7 +2,6 @@
     Plugin 'Valloric/YouCompleteMe'
 
     let g:ycm_autoclose_preview_window_after_completion=1
-    let g:ycm_key_invoke_completion='<C-Space>'
     nnoremap <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
     let g:ycm_python_binary_path='python'
     let g:ycm_filepath_completion_use_working_dir = 1
@@ -21,20 +20,11 @@
     endif
     let g:ycm_semantic_triggers =  {
                 \   'c' : ['->', '.'],
-                \   'objc' : ['->', '.'],
-                \   'ocaml' : ['.', '#'],
                 \   'cpp,objcpp' : ['->', '.', '::'],
-                \   'perl' : ['->'],
-                \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
-                \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+                \   'java,javascript,typescript,python,go' : ['.'],
                 \   'html': ['<', '"', '</', ' '],
-                \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-                \   'ruby' : ['.', '::'],
-                \   'lua' : ['.', ':'],
-                \   'erlang' : [':'],
-                \   'haskell' : ['.', 're!.']
+                \   'vim' : ['re![_a-za-z]+[_\w]*\.']
                 \ }
-    let python_highlight_all=1
 " }}}
 " nerdtree  {{{
     Plugin 'scrooloose/nerdtree'
@@ -75,22 +65,13 @@
     nmap sp <Plug>(ale_previous_wrap)
     nmap sn <Plug>(ale_next_wrap)
 " }}}
-" taglist {{{
-    Plugin 'vim-scripts/taglist.vim'
-    let Tlist_Use_Right_Window=1
-    let Tlist_File_Fold_Auto_Close=1
-    let Tlist_Exit_OnlyWindow=1
-    let Tlist_WinWidth=32
-    let Tlist_Ctags_Cmd='/usr/bin/ctags'
-    " let Tlist_Auto_Open=1
-" }}}
 " vim-fugitive {{{
     Plugin 'tpope/vim-fugitive'
     nmap <Leader>s :Gblame<CR>
 " }}}
 " {{{
-	Plugin 'dyng/ctrlsf.vim'
-	nnoremap <C-f> :CtrlSF<Space>
+    Plugin 'dyng/ctrlsf.vim'
+    nnoremap <C-f> :CtrlSF<Space>
 " }}}
 " other {{{
     Plugin 'vim-airline/vim-airline'
@@ -98,14 +79,14 @@
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/indentpython.vim'
     Plugin 'kien/ctrlp.vim'
-    " airline 状态栏
-    " 需要安装补丁字体 powerline/fonts
     set laststatus=2
     " set t_Co=256
     let g:airline_powerline_fonts=1
     let g:airline_theme='cool'
     "let g:airline_left_sep='>'
     let g:nerdtree_tabs_open_on_gui_startup=1
-    " 自动折叠插件 SimpylFold
-    let g:SimpyFold_docstring_preview=1        " 显示折叠代码的文档字符串
+    let g:SimpyFold_docstring_preview=1
+" }}}
+" nerdcommenter {{{
+    Plugin 'scrooloose/nerdcommenter'
 " }}}
