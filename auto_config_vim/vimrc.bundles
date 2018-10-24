@@ -68,16 +68,12 @@
         \ }
 " }}}
 " syntastic {{{
-    Plugin 'vim-syntastic/syntastic'
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    " let g:syntastic_python_checkers = ['pylint']
-    nmap <Leader>d :SyntasticToggleMode<CR>
+    Plugin 'nvie/vim-flake8'
+    Plugin 'w0rp/ale'
+    let g:ale_sign_column_always = 1
+    let b:ale_linters = ['flake8', 'pylint']
+    nmap sp <Plug>(ale_previous_wrap)
+    nmap sn <Plug>(ale_next_wrap)
 " }}}
 " taglist {{{
     Plugin 'vim-scripts/taglist.vim'
@@ -101,7 +97,6 @@
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/indentpython.vim'
-    Plugin 'nvie/vim-flake8'
     Plugin 'kien/ctrlp.vim'
     " airline 状态栏
     " 需要安装补丁字体 powerline/fonts
