@@ -2,7 +2,6 @@
 
 AUTOPATH=$(pwd)
 
-
 function installPrerequisite() {
     apt remove -y vim vim-tiny vim-runtime vim-common
     apt-get install -y python-dev python3-dev libncurses5-dev libgnome2-dev \
@@ -10,7 +9,6 @@ function installPrerequisite() {
         libcairo2-dev libx11-dev libxpm-dev libxt-dev build-essential cmake \
         ruby-dev lua5.1 liblua5.1-dev libperl-dev exuberant-ctags ack-grep 
 }
-
 
 function installVim() {
     cd $HOME
@@ -35,7 +33,6 @@ function installVim() {
             --prefix=/usr/local
 }
 
-
 function configVimBasic() {
     if [ -d $HOME/.vim/bundle/Vundle.vim ]; then
         echo -e '已经安装Vundle管理工具'
@@ -54,7 +51,6 @@ function configVimBasic() {
     mkdir -p $HOME/.vim/colors
     cp ./jellybeans.vim $HOME/.vim/colors/
 }
-
 
 function makeYouCompleteMe() {
     echo -e "\033[32m编译自动补全插件YouCompleteMe\033[0m"
