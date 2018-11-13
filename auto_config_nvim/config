@@ -1,0 +1,11 @@
+!#/bin/bash
+
+apt install nvim
+
+mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config/nvim/colors
+
+cp ./jellybeans.vim $HOME/.config/nvim/colors
+cp ./init.vim $HOME/.config/nvim
+
+nvim +PlugInstall +qall

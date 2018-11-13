@@ -14,7 +14,6 @@ function installVim() {
     cd $HOME
     if [ -d vim ]; then
         echo -e 'vim 已经clone'
-        return 0
     else
         git clone https://github.com/vim/vim.git
     fi
@@ -72,7 +71,6 @@ function makeYouCompleteMe() {
 installPrerequisite
 installVim
 configVimBasic
-configYouCompleteMe
 
 echo -e "\033[32m正在进行插件安装……\033[0m"
 vim +PluginInstall +qall 
