@@ -23,18 +23,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 	let g:python_host_prog='/home/wen/.pyenv/versions/neovim2/bin/python'
 	let g:python3_host_prog='/home/wen/.pyenv/versions/neovim3/bin/python'
 
-    set shortmess+=c
+	set shortmess+=c
 
-    au User Ncm2Plugin call ncm2#register_source({
-            \ 'name' : 'css',
-            \ 'priority': 9, 
-            \ 'subscope_enable': 1,
-            \ 'scope': ['css','scss'],
-            \ 'mark': 'css',
-            \ 'word_pattern': '[\w\-]+',
-            \ 'complete_pattern': ':\s*',
-            \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-            \ })
+	au User Ncm2Plugin call ncm2#register_source({
+			\ 'name' : 'css',
+			\ 'priority': 9, 
+			\ 'subscope_enable': 1,
+			\ 'scope': ['css','scss'],
+			\ 'mark': 'css',
+			\ 'word_pattern': '[\w\-]+',
+			\ 'complete_pattern': ':\s*',
+			\ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+			\ })
 
 " {{{
 " nerdtree {{{
@@ -88,10 +88,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-fugitive'
 " }}}
 
-" syntastic {{{
+" neomake {{{
 	Plug 'neomake/neomake'
 	let g:neomake_python_enabled_makers = ['flake8']
-	let g:neomake_place_signs = 1
 
 " }}}
 " {{{
@@ -101,9 +100,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'scrooloose/nerdcommenter'
 " }}}
 " {{{
-	Plug 'davidhalter/jedi-vim'
-	let g:jedi#completions_enabled = 0
-	let g:jedi#use_splits_not_buffers = "right" 
+    Plug 'nvie/vim-flake8'
+    Plug 'w0rp/ale'
+    let g:ale_sign_column_always = 1
+    let b:ale_linters = ['flake8', 'pylint']
 " }}}
 
 call plug#end()
