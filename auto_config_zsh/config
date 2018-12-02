@@ -11,23 +11,39 @@ function check() {
 }
 
 function install() {
-    if check; then
-        apt-get install -y zsh
-        wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-    fi
+	if check; then
+		git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
+		cd ~
+		for f in .zim/templates/*; do cp $f .$(basename $f); done;
+	fi
 }
 
 function config() {
-    cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
-    if [ -f $HOME/.zshrc ]; then
-        sed -i "s/^ZSH_THEME=\".*\"/ZSH_THEME=\"my\"/1" $HOME/.zshrc
-        sed -i "s/plugins=(/plugins=(autojump history extract z/1" $HOME/.zshrc
-        touch $HOME/.z
-    fi
-    exec $SHELL
-    chsh -s /bin/zsh
+	cp zshrc ~/.zshrc
+	exec $SHELL
+	chsh -s /bin/zsh
+	source .zlogin
 	exit
 }
+
+#function install() {
+    #if check; then
+        #apt-get install -y zsh
+        #wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+    #fi
+#}
+
+#function config() {
+    #cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
+    #if [ -f $HOME/.zshrc ]; then
+        #sed -i "s/^ZSH_THEME=\".*\"/ZSH_THEME=\"my\"/1" $HOME/.zshrc
+        #sed -i "s/plugins=(/plugins=(autojump history extract z/1" $HOME/.zshrc
+        #touch $HOME/.z
+    #fi
+    #exec $SHELL
+    #chsh -s /bin/zsh
+	#exit
+#}
 
 install
 config
