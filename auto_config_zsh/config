@@ -19,6 +19,7 @@ function install() {
 }
 
 function config() {
+	apt install fasd
 	cp zshrc ~/.zshrc
 	exec $SHELL
 	chsh -s /bin/zsh
