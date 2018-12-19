@@ -1,49 +1,38 @@
 #!/bin/bash
 
-function check() {
+function zshInstall() {
     zshloc=$(which zsh)
     if [ $zshloc = /usr/bin/zsh ]; then
         echo -e "系统监测已经安装zsh"
-        return 1
     else
-        return 0
+		apt install -y libncurses5-dev
+		wget https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
+		xz -d zsh-5.6.2.tar.xz
+		tar -xvf zsh-5.6.2.tar
+		cd zsh-5.6.2
+		./configure
+		make install
     fi
 }
 
-function install() {
-	if check; then
-		git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
-		cd ~
-		for f in .zim/templates/*; do cp $f .$(basename $f); done;
-	fi
+function zimInstall() {
+	git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
+	for f in ${HOME}/.zim/templates/*; do cp $f ${HOME}/.$(basename $f); done
 }
 
 function config() {
 	cp zshrc ~/.zshrc
+
+	git clone https://github.com/clvv/fasd.git
+	cd fasd
+	make install
+
 	exec $SHELL
-	chsh -s /bin/zsh
-	source .zlogin
+	chsh -s $(which zsh)
 	exit
 }
 
-#function install() {
-    #if check; then
-        #apt-get install -y zsh
-        #wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-    #fi
-#}
 
-#function config() {
-    #cp ./my.zsh-theme $HOME/.oh-my-zsh/themes/my.zsh-theme
-    #if [ -f $HOME/.zshrc ]; then
-        #sed -i "s/^ZSH_THEME=\".*\"/ZSH_THEME=\"my\"/1" $HOME/.zshrc
-        #sed -i "s/plugins=(/plugins=(autojump history extract z/1" $HOME/.zshrc
-        #touch $HOME/.z
-    #fi
-    #exec $SHELL
-    #chsh -s /bin/zsh
-	#exit
-#}
-
-install
+zshInstall
+zimInstall
 config
