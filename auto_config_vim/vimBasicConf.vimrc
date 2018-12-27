@@ -11,23 +11,9 @@
 " }}}
 
 " vundle settings {{{
-    set rtp+=$HOME/.vim/bundle/Vundle.vim
-    call vundle#begin()
-
-    "call vundle#begin('~/some/path/here')
-
-    Plugin 'VundleVim/Vundle.vim'
-
     if filereadable(expand('$HOME/.vim/vimrc.bundles'))
         source $HOME/.vim/vimrc.bundles
     endif
-
-
-    call vundle#end()
-
-    filetype plugin indent on
-
-    " filetype plugin on
 
 " }}}
 
