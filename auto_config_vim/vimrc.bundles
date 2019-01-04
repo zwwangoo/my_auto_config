@@ -1,4 +1,3 @@
-" vundle {{
     set rtp+=$HOME/.vim/bundle/Vundle.vim
     call vundle#begin()
 
@@ -7,6 +6,7 @@
     Plugin 'VundleVim/Vundle.vim'
 
 " YouCompleteMe {{{
+
     Plugin 'Valloric/YouCompleteMe'
 
     let g:ycm_autoclose_preview_window_after_completion=1
@@ -52,7 +52,7 @@
     let NERDTreeIgnore=['\.pyc$', '\~$']
     let NERDTreeShowHidden=1
     let NERDTreeAutoDeleteBuffer=1
-    let g:nerdtree_tabs_open_on_console_startup=1
+    let g:nerdtree_tabs_open_on_console_startup=0
     let g:NERDTreeIndicatorMapCustom = {
         \ "Modified"  : ">",
         \ "Staged"    : "+",
@@ -69,7 +69,7 @@
     Plugin 'nvie/vim-flake8'
     Plugin 'w0rp/ale'
     let g:ale_sign_column_always = 1
-    let b:ale_linters = ['flake8', 'pylint']
+    let b:ale_linters = ['flake8']
     nmap sp <Plug>(ale_previous_wrap)
     nmap sn <Plug>(ale_next_wrap)
 " }}}
@@ -97,20 +97,23 @@
 " }}}
 " nerdcommenter {{{
     Plugin 'scrooloose/nerdcommenter'
-" }}}
-" vim-jsbeautify {{{
 	Plugin 'maksimr/vim-jsbeautify'
 	map <c-j> :call JsBeautify()<cr>
-	autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-	autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-	autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+	autocmd FileType javascript vnoremap <buffer>  <c-j> :call RangeJsBeautify()<cr>
+	autocmd FileType json vnoremap <buffer> <c-j> :call RangeJsonBeautify()<cr>
+	autocmd FileType jsx vnoremap <buffer> <c-j> :call RangeJsxBeautify()<cr>
+	autocmd FileType html vnoremap <buffer> <c-j> :call RangeHtmlBeautify()<cr>
+	autocmd FileType css vnoremap <buffer> <c-j> :call RangeCSSBeautify()<cr>
+" }}}
+" vim-go  {{{
+    Plugin 'fatih/vim-go'
+	let g:go_highlight_functions = 1
+	let g:go_highlight_methods = 1
+	let g:go_highlight_structs = 1
+	let g:go_highlight_operators = 1
+	let g:go_highlight_build_constraints = 1
 " }}}
 
     call vundle#end()
 
     filetype plugin indent on
-
-    " filetype plugin on
-" }}}

@@ -7,6 +7,7 @@
     nmap <Leader>h <C-w>w
     nmap <Leader>m :nohl<CR>
     vnoremap <Leader>y "+y
+    nmap <Leader>t :terminal<CR>
     nmap <Leader>p "+p
 " }}}
 
@@ -55,6 +56,9 @@
     set autowrite
     set autoread
     set encoding=utf-8
+    if has("autocmd")
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
 " }}}
 
 
@@ -91,9 +95,4 @@ au BufNewFile,BufRead *.py
     \ set shiftwidth=4 |
     \ set autoindent |
     \ set fileformat=unix
-
-au BufNewFile,BufRead *.js, *.html, *.css, *.yml
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
 " }}}
