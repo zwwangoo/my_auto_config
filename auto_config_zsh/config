@@ -2,7 +2,7 @@
 
 function zshInstall() {
     zshloc=$(which zsh)
-    if [ $zshloc = /usr/bin/zsh ]; then
+    if [ $zshloc = /bin/zsh ]; then
         echo -e "系统监测已经安装zsh"
     else
 		apt install -y libncurses5-dev
@@ -27,9 +27,8 @@ function config() {
 	cd fasd
 	make install
 
-	exec $SHELL
-	chsh -s $(which zsh)
-	exit
+	command -v zsh | sudo tee -a /etc/shells
+	chsh -s "$(command -v zsh)" "${USER}"
 }
 
 
