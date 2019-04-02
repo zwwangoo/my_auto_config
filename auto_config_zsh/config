@@ -27,6 +27,8 @@ function config() {
 	cd fasd
 	make install
 
+        cd ~
+        chown $USER ~/.zhistory
 	command -v zsh | sudo tee -a /etc/shells
 	chsh -s "$(command -v zsh)" "${USER}"
 }
