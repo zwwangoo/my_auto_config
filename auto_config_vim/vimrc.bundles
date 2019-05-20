@@ -63,6 +63,12 @@
 " syntastic {{{
     Plug 'nvie/vim-flake8'
     Plug 'w0rp/ale'
+    Plug 'tell-k/vim-autopep8'
+
+    let g:autopep8_on_save = 1
+    let g:autopep8_disable_show_diff=1
+    autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
     let g:ale_sign_column_always = 1
     let b:ale_linters = ['flake8']
     nmap sp <Plug>(ale_previous_wrap)
@@ -92,23 +98,29 @@
 " }}}
 " nerdcommenter {{{
     Plug 'scrooloose/nerdcommenter'
-	Plug 'maksimr/vim-jsbeautify'
-	map <c-j> :call JsBeautify()<cr>
-	autocmd FileType javascript vnoremap <buffer>  <c-j> :call RangeJsBeautify()<cr>
-	autocmd FileType json vnoremap <buffer> <c-j> :call RangeJsonBeautify()<cr>
-	autocmd FileType jsx vnoremap <buffer> <c-j> :call RangeJsxBeautify()<cr>
-	autocmd FileType html vnoremap <buffer> <c-j> :call RangeHtmlBeautify()<cr>
-	autocmd FileType css vnoremap <buffer> <c-j> :call RangeCSSBeautify()<cr>
+    Plug 'maksimr/vim-jsbeautify'
+    map <c-j> :call JsBeautify()<cr>
+    autocmd FileType javascript vnoremap <buffer>  <c-j> :call RangeJsBeautify()<cr>
+    autocmd FileType json vnoremap <buffer> <c-j> :call RangeJsonBeautify()<cr>
+    autocmd FileType jsx vnoremap <buffer> <c-j> :call RangeJsxBeautify()<cr>
+    autocmd FileType html vnoremap <buffer> <c-j> :call RangeHtmlBeautify()<cr>
+    autocmd FileType css vnoremap <buffer> <c-j> :call RangeCSSBeautify()<cr>
 " }}}
 " vim-go  {{{
     Plug 'fatih/vim-go'
-	let g:go_highlight_functions = 1
-	let g:go_highlight_methods = 1
-	let g:go_highlight_structs = 1
-	let g:go_highlight_operators = 1
-	let g:go_highlight_build_constraints = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
 " }}}
+" wakatime {{{
+    Plug 'wakatime/vim-wakatime'
+" }}}
+"
+    Plug 'mileszs/ack.vim'
+"
 
-	call plug#end()
+    call plug#end()
 
     filetype plugin indent on
