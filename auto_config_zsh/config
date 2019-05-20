@@ -2,34 +2,38 @@
 
 function zshInstall() {
     zshloc=$(which zsh)
-    if [ $zshloc = /usr/bin/zsh ]; then
+    if [ $zshloc = /bin/zsh ]; then
         echo -e "系统监测已经安装zsh"
     else
-		apt install -y libncurses5-dev
-		wget https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
-		xz -d zsh-5.6.2.tar.xz
-		tar -xvf zsh-5.6.2.tar
-		cd zsh-5.6.2
-		./configure
-		make install
+        apt install -y libncurses5-dev
+        wget https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
+        xz -d zsh-5.6.2.tar.xz
+        tar -xvf zsh-5.6.2.tar
+        cd zsh-5.6.2
+        ./configure
+        make install
+        cd ..
+        rm -r zsh-5.6.2*
     fi
 }
 
 function zimInstall() {
-	git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
-	for f in ${HOME}/.zim/templates/*; do cp $f ${HOME}/.$(basename $f); done
+    git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
+    for f in ${HOME}/.zim/templates/*; do cp $f ${HOME}/.$(basename $f); done
 }
 
 function config() {
-	cp zshrc ~/.zshrc
+    cp zshrc ~/.zshrc
 
-	git clone https://github.com/clvv/fasd.git
-	cd fasd
-	make install
+    git clone https://github.com/clvv/fasd.git
+    cd fasd
+    make install
 
-	exec $SHELL
-	chsh -s $(which zsh)
-	exit
+    cd ~
+    touch $USER ~/.zhistory
+    chown $USER ~/.zhistory
+    command -v zsh | sudo tee -a /etc/shells
+    chsh -s "$(command -v zsh)" "${USER}"
 }
 
 

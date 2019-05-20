@@ -29,7 +29,7 @@ function installVim() {
             --enable-cscope \
             --prefix=/usr/local
     make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
-	make install
+    make install
     
     update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
     update-alternatives --set editor /usr/local/bin/vim
@@ -64,13 +64,14 @@ function makeYouCompleteMe() {
     echo -e "\033[32m编译完成！\033[0m"
     cp third_party/ycmd/examples/.ycm_extra_conf.py $HOME/.ycm_extra_conf.py
     echo -e "\033[32m任务完成，请尽情的使用吧！"
-    cd $HOME
+    cd $AUTOPATH
 }
 
 
 installPrerequisite
 installVim
 configVimBasic
+chmod 777 -R $HOME/.vim/
 
 echo -e "\033[32m正在进行插件安装……\033[0m"
 vim +PlugInstall +qall 
