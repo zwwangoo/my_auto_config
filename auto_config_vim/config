@@ -38,7 +38,7 @@ function installVim() {
 }
 
 function configVimBasic() {
-    if [ -d $HOME/.vim/autoload/plug.vim ]; then
+    if [ -d "$HOME/.vim/autoload/plug.vim" ]; then
         echo -e '已经安装vim-plug管理工具'
     else
         echo -e '安装vim-plug管理工具'
@@ -46,7 +46,7 @@ function configVimBasic() {
     fi
 
     echo -e '\033[32m配置用户的vim配置文件.vimrc\033[0m'
-    if [ -f $HOME/.vimrc ]; then
+    if [ -f "$HOME/.vimrc" ]; then
         mv $HOME/.vimrc $HOME/.vimrc.bak
     fi
     cd $AUTOPATH
