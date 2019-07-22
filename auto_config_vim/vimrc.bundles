@@ -120,6 +120,7 @@
 "
     Plug 'mileszs/ack.vim'
     Plug 'zxqfl/tabnine-vim'
+	Plug 'MattesGroeger/vim-bookmarks'
 "
 
     call plug#end()
