@@ -6,6 +6,7 @@
     nmap <Leader>x :x<CR>
     nmap <Leader>h <C-w>w
     nmap <Leader>m :nohl<CR>
+    nmap <Leader>a :ma
     nmap <leader>t :new term://zsh<CR>
 
     vnoremap <Leader>y "+y
