@@ -6,8 +6,9 @@
     nmap <Leader>x :x<CR>
     nmap <Leader>h <C-w>w
     nmap <Leader>m :nohl<CR>
+    nmap <leader>t :new term://zsh<CR>
+
     vnoremap <Leader>y "+y
-    nmap <Leader>t :terminal<CR>
     nmap <Leader>p "+p
 " }}}
 
