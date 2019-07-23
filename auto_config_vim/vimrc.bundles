@@ -118,9 +118,24 @@
     Plug 'wakatime/vim-wakatime'
 " }}}
 "
-    Plug 'mileszs/ack.vim'
-    Plug 'zxqfl/tabnine-vim'
+" {{{
+	Plug 'mileszs/ack.vim'
+	Plug 'zxqfl/tabnine-vim'
+" }}}
+" vim-bookmark {{{
 	Plug 'MattesGroeger/vim-bookmarks'
+	" 原本的m键与nerdtree中的快捷键冲突,所以所有快捷键都调为z开头
+	nmap zz <Plug>BookmarkToggle
+	nmap zi <Plug>BookmarkAnnotate
+	nmap za <Plug>BookmarkShowAll
+	nmap zj <Plug>BookmarkNext
+	nmap zk <Plug>BookmarkPrev
+	nmap zc <Plug>BookmarkClear
+	nmap zx <Plug>BookmarkClearAll
+	nmap zkk <Plug>BookmarkMoveUp
+	nmap zjj <Plug>BookmarkMoveDown
+	nmap zg <Plug>BookmarkMoveToLine
+	let g:bookmark_no_default_key_mappings = 1
 "
 
     call plug#end()
