@@ -1,49 +1,41 @@
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('/home/wen/.config/nvim/plugged')
 
-" {{{
+" Auto Complete {{{
 
-	Plug 'ncm2/ncm2'
-    Plug 'roxma/nvim-yarp'
+    " Plug 'ncm2/ncm2'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'ncm2/ncm2-github'
+    " Plug 'ncm2/ncm2-bufword'
+    " Plug 'ncm2/ncm2-jedi'
+    " Plug 'ncm2/ncm2-path'
+    " Plug 'ncm2/ncm2-match-highlight'
+    " Plug 'ncm2/ncm2-markdown-subscope'
+    " Plug 'ncm2/ncm2-tmux'
 
-    " enable ncm2 for all buffers
-    autocmd BufEnter * call ncm2#enable_for_buffer()
 
-    " IMPORTANTE: :help Ncm2PopupOpen for more information
-    set completeopt=noinsert,menuone,noselect
+    " " enable ncm2 for all buffers
+    " autocmd BufEnter * call ncm2#enable_for_buffer()
 
-    " NOTE: you need to install completion sources to get completions. Check
-    " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-    Plug 'ncm2/ncm2-bufword'
-    Plug 'ncm2/ncm2-tmux'
-    Plug 'ncm2/ncm2-path'
-    Plug 'ncm2/ncm2-jedi'
+    " " IMPORTANTE: :help Ncm2PopupOpen for more information
+    " set completeopt=noinsert,menuone,noselect
 
     " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
     " found' messages
-	let g:python_host_prog='/home/wen/.pyenv/versions/neovim2/bin/python'
-	let g:python3_host_prog='/home/wen/.pyenv/versions/neovim3/bin/python'
+    let g:python_host_prog='/home/wen/.pyenv/versions/neovim2/bin/python'
+    let g:python3_host_prog='/home/wen/.pyenv/versions/neovim3/bin/python'
 
-	set shortmess+=c
+    set shortmess+=c
 
-	au User Ncm2Plugin call ncm2#register_source({
-			\ 'name' : 'css',
-			\ 'priority': 9, 
-			\ 'subscope_enable': 1,
-			\ 'scope': ['css','scss'],
-			\ 'mark': 'css',
-			\ 'word_pattern': '[\w\-]+',
-			\ 'complete_pattern': ':\s*',
-			\ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-			\ })
+" }}}
 
-" {{{
 " nerdtree {{{
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-	autocmd StdinReadPre * let s:std_in=1
+    autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    nmap <Leader>f :NERDTreeToggle<CR>
     let NERDTreeShowLineNumbers=1
     let NERDTreeMinimalUI=1
     let NERDTreeAutoCenter=0
@@ -68,42 +60,126 @@ call plug#begin('~/.config/nvim/plugged')
         \ }
 " }}}
 
+" python {{{
+
+    Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+    Plug 'neomake/neomake'
+    Plug 'nvie/vim-flake8'
+    Plug 'w0rp/ale'
+    Plug 'tell-k/vim-autopep8'
+    let g:neomake_python_enabled_makers = ['flake8']
+    let g:autopep8_on_save = 0
+    let g:autopep8_disable_show_diff=1
+    autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
+    let b:ale_linters = ['flake8']
+    nmap sp <Plug>(ale_previous_wrap)
+    nmap sn <Plug>(ale_next_wrap)
+
 " }}}
+
 " other {{{
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tmhedberg/SimpylFold'
-    Plug 'vim-scripts/indentpython.vim'
     Plug 'kien/ctrlp.vim'
+    let g:ale_sign_column_always = 1
     set laststatus=2
     " set t_Co=256
     let g:airline_powerline_fonts=1
     let g:airline_theme='cool'
-    "let g:airline_left_sep='>'
+    let g:airline_left_sep='>'
     let g:nerdtree_tabs_open_on_gui_startup=1
     let g:SimpyFold_docstring_preview=1
 " }}}
 
 " vim-fugitive {{{
     Plug 'tpope/vim-fugitive'
+    nmap <Leader>s :Gblame<CR>
 " }}}
 
-" neomake {{{
-	Plug 'neomake/neomake'
-	let g:neomake_python_enabled_makers = ['flake8']
-
-" }}}
 " {{{
-	" 搜索
-	Plug 'dyng/ctrlsf.vim'
-	" 快速注释
+    " 搜索
+    Plug 'dyng/ctrlsf.vim'
+    nmap <C-f> :CtrlSF<Space>
+    " 快速注释
     Plug 'scrooloose/nerdcommenter'
 " }}}
-" {{{
-    Plug 'nvie/vim-flake8'
-    Plug 'w0rp/ale'
-    let g:ale_sign_column_always = 1
-    let b:ale_linters = ['flake8', 'pylint']
+" {{{ Bookmarks
+    Plug 'kshenoy/vim-signature'
+    let g:SignatureMap = {
+        \ 'Leader'             :  "z",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "dm-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "dm/",
+        \ 'PurgeMarkers'       :  "dm?",
+        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevLineAlpha'  :  "",
+        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListLocalMarks'     :  "m/",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+" " vim-bookmark {{{
+"     Plug 'MattesGroeger/vim-bookmarks'
+"     " 原本的m键与nerdtree中的快捷键冲突,所以所有快捷键都调为z开头
+"     nmap zz <Plug>BookmarkToggle
+"     nmap zi <Plug>BookmarkAnnotate
+"     nmap za <Plug>BookmarkShowAll
+"     nmap zj <Plug>BookmarkNext
+"     nmap zk <Plug>BookmarkPrev
+"     nmap zc <Plug>BookmarkClear
+"     nmap zx <Plug>BookmarkClearAll
+"     nmap zkk <Plug>BookmarkMoveUp
+"     nmap zjj <Plug>BookmarkMoveDown
+"     nmap zg <Plug>BookmarkMoveToLine
+"     let g:bookmark_no_default_key_mappings = 1
+" " }}}
+"
+    Plug 'mileszs/ack.vim'
+    Plug 'zxqfl/tabnine-vim'
+
+" {{{ Language Server
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
 " }}}
+"" Markdown
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+    Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+    let g:mkdp_auto_start = 0
+    let g:mkdp_auto_close = 1
+    let g:mkdp_refresh_slow = 0
+    let g:mkdp_command_for_global = 0
+    let g:mkdp_open_to_the_world = 0
+    let g:mkdp_open_ip = ''
+    let g:mkdp_browser = 'chromium'
+    let g:mkdp_echo_preview_url = 0
+    let g:mkdp_browserfunc = ''
+    let g:mkdp_preview_options = {
+        \ 'mkit': {},
+        \ 'katex': {},
+        \ 'uml': {},
+        \ 'maid': {},
+        \ 'disable_sync_scroll': 0,
+        \ 'sync_scroll_type': 'middle',
+        \ 'hide_yaml_meta': 1
+        \ }
+    let g:mkdp_markdown_css = ''
+    let g:mkdp_highlight_css = ''
+    let g:mkdp_port = ''
+    let g:mkdp_page_title = '「${name}」'
 
 call plug#end()
