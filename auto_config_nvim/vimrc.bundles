@@ -2,22 +2,22 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
 " Auto Complete {{{
 
-    " Plug 'ncm2/ncm2'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'ncm2/ncm2-github'
-    " Plug 'ncm2/ncm2-bufword'
-    " Plug 'ncm2/ncm2-jedi'
-    " Plug 'ncm2/ncm2-path'
+    Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
+    Plug 'ncm2/ncm2-github'
+    Plug 'ncm2/ncm2-bufword'
+    Plug 'ncm2/ncm2-jedi'
+    Plug 'ncm2/ncm2-path'
     " Plug 'ncm2/ncm2-match-highlight'
-    " Plug 'ncm2/ncm2-markdown-subscope'
-    " Plug 'ncm2/ncm2-tmux'
+    Plug 'ncm2/ncm2-markdown-subscope'
+	Plug 'ncm2/ncm2-tmux'
 
 
-    " " enable ncm2 for all buffers
-    " autocmd BufEnter * call ncm2#enable_for_buffer()
+    " enable ncm2 for all buffers
+    autocmd BufEnter * call ncm2#enable_for_buffer()
 
-    " " IMPORTANTE: :help Ncm2PopupOpen for more information
-    " set completeopt=noinsert,menuone,noselect
+    " IMPORTANTE: :help Ncm2PopupOpen for more information
+    set completeopt=noinsert,menuone,noselect
 
     " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
     " found' messages
@@ -25,6 +25,13 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     let g:python3_host_prog='/home/wen/.pyenv/versions/neovim3/bin/python'
 
     set shortmess+=c
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+    " Use <TAB> to select the popup menu:
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    let ncm2#popup_delay = 5
+    let ncm2#complete_length = [[1, 1]]
 
 " }}}
 
@@ -150,12 +157,6 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     Plug 'mileszs/ack.vim'
     Plug 'zxqfl/tabnine-vim'
 
-" {{{ Language Server
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-" }}}
 "" Markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
     Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
