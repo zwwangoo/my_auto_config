@@ -8,7 +8,6 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     Plug 'ncm2/ncm2-bufword'
     Plug 'ncm2/ncm2-jedi'
     Plug 'ncm2/ncm2-path'
-    " Plug 'ncm2/ncm2-match-highlight'
     Plug 'ncm2/ncm2-markdown-subscope'
 	Plug 'ncm2/ncm2-tmux'
 
@@ -50,7 +49,7 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     let NERDTreeWinSize=31
     let NERDTreeShowBookmarks=1
     let NERDTreeMouseMode=2
-    let NERDTreeIgnore=['\.pyc$', '\~$']
+    let NERDTreeIgnore=['\.pyc$', '\~$', '\.idea', '__pycache__', '\.git']
     let NERDTreeShowHidden=1
     let NERDTreeAutoDeleteBuffer=1
     let g:nerdtree_tabs_open_on_console_startup=0
@@ -138,22 +137,7 @@ call plug#begin('/home/wen/.config/nvim/plugged')
         \ 'ListLocalMarks'     :  "m/",
         \ 'ListLocalMarkers'   :  "m?"
         \ }
-" " vim-bookmark {{{
-"     Plug 'MattesGroeger/vim-bookmarks'
-"     " 原本的m键与nerdtree中的快捷键冲突,所以所有快捷键都调为z开头
-"     nmap zz <Plug>BookmarkToggle
-"     nmap zi <Plug>BookmarkAnnotate
-"     nmap za <Plug>BookmarkShowAll
-"     nmap zj <Plug>BookmarkNext
-"     nmap zk <Plug>BookmarkPrev
-"     nmap zc <Plug>BookmarkClear
-"     nmap zx <Plug>BookmarkClearAll
-"     nmap zkk <Plug>BookmarkMoveUp
-"     nmap zjj <Plug>BookmarkMoveDown
-"     nmap zg <Plug>BookmarkMoveToLine
-"     let g:bookmark_no_default_key_mappings = 1
-" " }}}
-"
+
     Plug 'mileszs/ack.vim'
     Plug 'zxqfl/tabnine-vim'
 
