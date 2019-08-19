@@ -10,6 +10,8 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     Plug 'ncm2/ncm2-path'
     Plug 'ncm2/ncm2-markdown-subscope'
     Plug 'ncm2/ncm2-tmux'
+	Plug 'ncm2/ncm2-html-subscope'
+	Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 
 
     " enable ncm2 for all buffers
@@ -144,7 +146,7 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 " }}}
 
 " {{{ 自动引号&括号补全
-    Plug 'jiangmiao/auto-pairs'
+    " Plug 'jiangmiao/auto-pairs'
     " 快速注释
     Plug 'scrooloose/nerdcommenter'
 	" python函数跳转
@@ -152,5 +154,6 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 	let g:jedi#completions_enabled = 0  " 不使用自动补全
 	let g:jedi#use_splits_not_buffers = "winwidth" " 打开窗口在top left right bottom
 	let g:jedi#goto_definitions_command = ""  " 默认的 <leader>s 键和vim-fugitive的键冲突，所以不设置
+	Plug 'mattn/emmet-vim'
 " }}}
 call plug#end()
