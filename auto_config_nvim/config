@@ -1,6 +1,6 @@
 !#/bin/bash
 
-apt install neovim xclip
+apt install neovim xclip ack
 
 mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.config/nvim/colors

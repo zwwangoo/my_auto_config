@@ -4,7 +4,7 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
     Plug 'ncm2/ncm2'
     Plug 'roxma/nvim-yarp'
-    Plug 'ncm2/ncm2-github'
+    " Plug 'ncm2/ncm2-github'
     Plug 'ncm2/ncm2-bufword'
     Plug 'ncm2/ncm2-jedi'
     Plug 'ncm2/ncm2-path'
@@ -72,7 +72,7 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
     Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-    Plug 'neomake/neomake'
+	Plug 'neomake/neomake'
     Plug 'nvie/vim-flake8'
     Plug 'w0rp/ale'
     Plug 'tell-k/vim-autopep8'
@@ -87,11 +87,12 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
 " }}}
 
-" other {{{
+" other {{{  状态栏
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+	" 折叠
     Plug 'tmhedberg/SimpylFold'
-    Plug 'kien/ctrlp.vim'
+    " Plug 'kien/ctrlp.vim'
     let g:ale_sign_column_always = 1
     set laststatus=2
     " set t_Co=256
@@ -108,11 +109,11 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 " }}}
 
 " {{{
-    " 搜索
+    " 搜索 全局搜索
     Plug 'dyng/ctrlsf.vim'
     nmap <C-f> :CtrlSF<Space>
 " }}}
-" {{{ Bookmarks
+" {{{ Bookmarks  标签
     Plug 'kshenoy/vim-signature'
     let g:SignatureMap = {
         \ 'Leader'             :  "z",
@@ -138,8 +139,8 @@ call plug#begin('/home/wen/.config/nvim/plugged')
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
-    Plug 'mileszs/ack.vim'
-    Plug 'zxqfl/tabnine-vim'
+    " Plug 'mileszs/ack.vim'
+	" Plug 'zxqfl/tabnine-vim'
 
 " {{{ vim-wakatime  about https://wakatime.com/vim
     Plug 'wakatime/vim-wakatime'
@@ -151,9 +152,10 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     Plug 'scrooloose/nerdcommenter'
 	" python函数跳转
 	Plug 'davidhalter/jedi-vim'
-	let g:jedi#completions_enabled = 0  " 不使用自动补全
+	let g:jedi#completions_enabled = 1  " 不使用自动补全
 	let g:jedi#use_splits_not_buffers = "winwidth" " 打开窗口在top left right bottom
 	let g:jedi#goto_definitions_command = ""  " 默认的 <leader>s 键和vim-fugitive的键冲突，所以不设置
-	Plug 'mattn/emmet-vim'
+	let g:jedi#popup_on_dot = 0
+	" Plug 'mattn/emmet-vim'
 " }}}
 call plug#end()
