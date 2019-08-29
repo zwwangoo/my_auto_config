@@ -72,15 +72,18 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
     Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-	Plug 'neomake/neomake'
+	" Plug 'neomake/neomake'
     Plug 'nvie/vim-flake8'
     Plug 'w0rp/ale'
     Plug 'tell-k/vim-autopep8'
-    let g:neomake_python_enabled_makers = ['flake8']
-    let g:autopep8_on_save = 0
-    let g:autopep8_disable_show_diff=1
+    " let g:neomake_python_enabled_makers = ['flake8']
+	" let g:autopep8_on_save = 0
+     let g:autopep8_disable_show_diff=1
     autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
+	let g:flake8_max_line_length = 120
+
+	let g:ale_sign_column_always = 1
     let b:ale_linters = ['flake8']
     nmap sp <Plug>(ale_previous_wrap)
     nmap sn <Plug>(ale_next_wrap)
@@ -105,7 +108,7 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
 " vim-fugitive {{{  git log
     Plug 'tpope/vim-fugitive'
-    nmap <Leader>s :Gblame<CR>
+    nmap <Leader>a :Gblame<CR>
 " }}}
 
 " {{{
