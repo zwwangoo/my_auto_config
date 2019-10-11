@@ -2,18 +2,20 @@
 
 function zshInstall() {
     zshloc=$(which zsh)
-    if [ $zshloc = /bin/zsh ]; then
+    if [ $zshloc = /usr/bin/zsh ]; then
         echo -e "系统监测已经安装zsh"
     else
-        apt install -y libncurses5-dev
-        wget https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
+        sudo apt install -y libncurses5-dev
+		if [ ! -f "zsh-5.6.2.tar.xz" ]; then
+			wget https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
+		fi
         xz -d zsh-5.6.2.tar.xz
         tar -xvf zsh-5.6.2.tar
         cd zsh-5.6.2
         ./configure
         make install
         cd ..
-        rm -r zsh-5.6.2*
+        #rm -r zsh-5.6.2*
     fi
 }
 
@@ -34,9 +36,10 @@ function config() {
     chown $USER ~/.zhistory
     command -v zsh | sudo tee -a /etc/shells
     chsh -s "$(command -v zsh)" "${USER}"
+	su $USER
 }
 
 
 zshInstall
-zimInstall
-config
+# zimInstall
+# config
