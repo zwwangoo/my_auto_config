@@ -1,0 +1,36 @@
+#!/bin/bash
+echo -e "# ---------------------------------------------------- #"
+echo -e "部署个人Linux环境，当前脚本仅适用与ubuntu系列"
+echo -e "# ---------------------------------------------------- #"
+
+function replaceHost(){
+    echo -e "添加github相关的DNS"
+    sudo cat ./hosts >> /etc/hosts
+
+}
+
+replaceHost
+
+case $1 in
+    -fcitx)
+        sudo apt install fcitx fcitx-table-all
+        ;;
+    -zsh)
+        echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        echo -e "安装zsh"
+        echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        cd ./auto_config_zsh && bash config && cd ../
+        ;;
+    -nvim)
+        echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        echo -e "配置和升级NVIM"
+        echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        cd ./auto_config_nvim && bash config && cd ../
+        ;;
+    -tmux)
+        echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        echo -e "安装配置tmux和terminator"
+        echo -e "++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        cd ./auto_config_tmux && bash config && cd ../
+        ;;
+esac

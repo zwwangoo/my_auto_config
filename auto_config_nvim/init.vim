@@ -7,27 +7,34 @@
     nmap <leader>h <C-w>w
     nmap <leader>m ::nohl<CR>
     nmap <leader>t :new term://zsh<CR>
+    " 复制命令的结果
+    nmap <leader>r :read! 
+
+    " 权限不足
+    nmap <leader>2 :w !sudo tee %<CR>
 
     " sudo apt install xclip
     vnoremap <Leader>y "+y
     nnoremap <Leader>p "+p
 
+    " yf拷贝当前文件名，yp拷贝完整文件路径
+    nnoremap yf :let @"=expand("%:t")<CR>
+    nnoremap yp :let @"=expand("%:p")<CR>
     nnoremap <space> za    " Enable folding with the <space>
 " }}}
 
 " plugin {{{
-    set shell=/usr/local/bin/zsh
     if filereadable(expand('$HOME/.config/nvim/vimrc.bundles'))
         source $HOME/.config/nvim/vimrc.bundles
-
     endif
+
     filetype plugin indent on
-
 " }}}
-
+"
 " basic {{{
     set cursorline
     set cursorcolumn
+    set relativenumber " 相对行号
     
     if filereadable(expand('$HOME/.config/nvim/colors/jellybeans.vim'))
         colorscheme jellybeans
@@ -52,7 +59,7 @@
     set foldlevel=99
     set nobackup
     set noswapfile
-	set notermguicolors
+    set notermguicolors
     " set mouse=a
     " set selection=exclusive
     " set selectmode=mouse,key
@@ -62,17 +69,17 @@
 " }}}
 
 " {{{
-    au BufNewFile,BufRead *.py
-        \ set tabstop=4 |
-        \ set softtabstop=4 |
-        \ set shiftwidth=4 |
-        \ set autoindent |
-        \ set fileformat=unix
-
-    au BufNewFile,BufRead *.js, *.html, *.css, *.yml
-        \ set tabstop=2 |
-        \ set softtabstop=2 |
-        \ set shiftwidth=2
+"   au BufNewFile,BufRead *.py
+"       \ set tabstop=4 |
+"       \ set softtabstop=4 |
+"       \ set shiftwidth=4 |
+"       \ set autoindent |
+"       \ set fileformat=unix
+"
+"   au BufNewFile,BufRead *.js, *.html, *.css, *.yml, *.yaml
+"       \ set tabstop=2 |
+"       \ set softtabstop=2 |
+"       \ set shiftwidth=2
 " }}}
 
 

@@ -1,4 +1,4 @@
-call plug#begin('/home/wen/.config/nvim/plugged')
+call plug#begin('$HOME/.config/nvim/plugged')
 
 " Auto Complete {{{
 
@@ -10,8 +10,8 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     Plug 'ncm2/ncm2-path'
     Plug 'ncm2/ncm2-markdown-subscope'
     Plug 'ncm2/ncm2-tmux'
-	Plug 'ncm2/ncm2-html-subscope'
-	Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+    Plug 'ncm2/ncm2-html-subscope'
+    Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 
 
     " enable ncm2 for all buffers
@@ -22,8 +22,8 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 
     " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
     " found' messages
-    let g:python_host_prog='/home/wen/.pyenv/versions/neovim2/bin/python'
-    let g:python3_host_prog='/home/wen/.pyenv/versions/neovim3/bin/python'
+    let g:python_host_prog=$HOME."/.pyenv/versions/neovim2/bin/python"
+    let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python"
 
     set shortmess+=c
     inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
@@ -67,23 +67,36 @@ call plug#begin('/home/wen/.config/nvim/plugged')
         \ "Unknown"   : "?"
         \ }
 " }}}
+" {{{ undo
+    Plug 'mbbill/undotree'
+    nnoremap <F5> :UndotreeToggle<cr>
+    if has("persistent_undo")
+        set undodir=$HOME/.undodir
+        set undofile
+    endif
+" }}}
+" {{{
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    nmap <C-b> :LeaderfMru<cr>
+    "nmap <leader>m :LeaderfFunction!<cr>
+" }}}
 
 " python {{{
 
     Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-	" Plug 'neomake/neomake'
+    " Plug 'neomake/neomake'
     Plug 'nvie/vim-flake8'
     Plug 'w0rp/ale'
     Plug 'tell-k/vim-autopep8'
     " let g:neomake_python_enabled_makers = ['flake8']
-	" let g:autopep8_on_save = 0
+    " let g:autopep8_on_save = 0
      let g:autopep8_disable_show_diff=1
     autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
-	let g:flake8_max_line_length = 120
+    let g:flake8_max_line_length = 120
 
-	let g:ale_sign_column_always = 1
+    let g:ale_sign_column_always = 1
     let b:ale_linters = ['flake8']
     nmap sp <Plug>(ale_previous_wrap)
     nmap sn <Plug>(ale_next_wrap)
@@ -91,19 +104,20 @@ call plug#begin('/home/wen/.config/nvim/plugged')
 " }}}
 
 " other {{{  状态栏
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-	" 折叠
-    Plug 'tmhedberg/SimpylFold'
-    " Plug 'kien/ctrlp.vim'
-    let g:ale_sign_column_always = 1
-    set laststatus=2
-    " set t_Co=256
-    let g:airline_powerline_fonts=1
-    let g:airline_theme='cool'
-    let g:airline_left_sep='>'
-    let g:nerdtree_tabs_open_on_gui_startup=1
-    let g:SimpyFold_docstring_preview=1
+"
+    " Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline-themes'
+    " " 折叠
+    " Plug 'tmhedberg/SimpylFold'
+    " " Plug 'kien/ctrlp.vim'
+    " let g:ale_sign_column_always = 1
+    " set laststatus=2
+    " " set t_Co=256
+    " " let g:airline_powerline_fonts=1
+    " let g:airline_theme='cool'
+    " let g:airline_left_sep='>'
+    " let g:nerdtree_tabs_open_on_gui_startup=1
+    " let g:SimpyFold_docstring_preview=1
 " }}}
 
 " vim-fugitive {{{  git log
@@ -117,48 +131,49 @@ call plug#begin('/home/wen/.config/nvim/plugged')
     nmap <C-f> :CtrlSF<Space>
 " }}}
 " {{{ Bookmarks  标签
-    Plug 'kshenoy/vim-signature'
-    let g:SignatureMap = {
-        \ 'Leader'             :  "z",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
+    " Plug 'kshenoy/vim-signature'
+    " let g:SignatureMap = {
+    "     \ 'Leader'             :  "z",
+    "     \ 'PlaceNextMark'      :  "m,",
+    "     \ 'ToggleMarkAtLine'   :  "m.",
+    "     \ 'PurgeMarksAtLine'   :  "dm-",
+    "     \ 'DeleteMark'         :  "dm",
+    "     \ 'PurgeMarks'         :  "dm/",
+    "     \ 'PurgeMarkers'       :  "dm?",
+    "     \ 'GotoNextLineAlpha'  :  "m<LEADER>",
+    "     \ 'GotoPrevLineAlpha'  :  "",
+    "     \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
+    "     \ 'GotoPrevSpotAlpha'  :  "",
+    "     \ 'GotoNextLineByPos'  :  "",
+    "     \ 'GotoPrevLineByPos'  :  "",
+    "     \ 'GotoNextSpotByPos'  :  "mn",
+    "     \ 'GotoPrevSpotByPos'  :  "mp",
+    "     \ 'GotoNextMarker'     :  "",
+    "     \ 'GotoPrevMarker'     :  "",
+    "     \ 'GotoNextMarkerAny'  :  "",
+    "     \ 'GotoPrevMarkerAny'  :  "",
+    "     \ 'ListLocalMarks'     :  "m/",
+    "     \ 'ListLocalMarkers'   :  "m?"
+    "     \ }
 
     " Plug 'mileszs/ack.vim'
-	" Plug 'zxqfl/tabnine-vim'
+    " Plug 'zxqfl/tabnine-vim'
 
 " {{{ vim-wakatime  about https://wakatime.com/vim
-    Plug 'wakatime/vim-wakatime'
+    " Plug 'wakatime/vim-wakatime'
 " }}}
 
 " {{{ 自动引号&括号补全
-    " Plug 'jiangmiao/auto-pairs'
+    Plug 'jiangmiao/auto-pairs'
     " 快速注释
     Plug 'scrooloose/nerdcommenter'
-	" python函数跳转
-	Plug 'davidhalter/jedi-vim'
-	let g:jedi#completions_enabled = 1  " 不使用自动补全
-	let g:jedi#use_splits_not_buffers = "winwidth" " 打开窗口在top left right bottom
-	let g:jedi#goto_definitions_command = ""  " 默认的 <leader>s 键和vim-fugitive的键冲突，所以不设置
-	let g:jedi#popup_on_dot = 0
-	" Plug 'mattn/emmet-vim'
+    " python函数跳转
+    Plug 'davidhalter/jedi-vim'
+    let g:jedi#completions_enabled = 1  " 不使用自动补全
+    let g:jedi#use_splits_not_buffers = "winwidth" " 打开窗口在top left right bottom
+    let g:jedi#goto_definitions_command = ""  " 默认的 <leader>s 键和vim-fugitive的键冲突，所以不设置
+    let g:jedi#popup_on_dot = 0
+    " Plug 'mattn/emmet-vim'
 " }}}
+
 call plug#end()
