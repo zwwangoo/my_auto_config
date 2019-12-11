@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Jetbrains DataGrip
+Icon=/opt/DataGrip-2019.2.2/bin/datagrip.svg
+Exec="/opt/DataGrip-2019.2.2/bin/datagrip.sh" %f
+Comment=Capable and Ergonomic IDE for JVM
+Categories=Development;Database;
+Terminal=false
+StartupWMClass=jetbrains-datagrip
+

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pycharm
+Icon=/opt/pycharm-2019.3/bin/pycharm.png
+Exec="/opt/pycharm-2019.3/bin/pycharm.sh" %f
+Comment=The smartest Python IDE
+Categories=Development;IDE;Python;
+Terminal=false
+StartupWMClass=jetbrains-pycharm
