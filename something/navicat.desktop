@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Navicat
+Exec=/opt/navicat121_premium_cs_x64/start_navicat
+Terminal=false
+Type=Application
+Icon=/opt/navicat121_premium_cs_x64/navicat_icon.png
+Categories=Database;
