@@ -175,5 +175,11 @@ call plug#begin('$HOME/.config/nvim/plugged')
     let g:jedi#popup_on_dot = 0
     " Plug 'mattn/emmet-vim'
 " }}}
+" {{{
+	Plug 'tamlok/vim-markdown'
+	Plug 'mhartington/oceanic-next'
+	let g:airline_theme='oceanicnext'
+
+" }}}
 
 call plug#end()

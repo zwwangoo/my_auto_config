@@ -1,13 +1,9 @@
 #!/bin/bash
 
-
-function zimInstall() {
-    git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
-    for f in ${HOME}/.zim/templates/*; do cp $f ${HOME}/.$(basename $f); done
-}
-
 function config() {
     cp zshrc ~/.zshrc
+
+	sudo wget -nv -O - https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 
     git clone https://github.com/clvv/fasd.git
     cd fasd
@@ -23,5 +19,5 @@ function config() {
 
 
 sudo apt install -y libncurses5-dev zsh
-zimInstall
+
 config
