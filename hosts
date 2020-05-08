@@ -10,3 +10,6 @@ github.map.fastly.net assets-cdn.github.com
 
 192.30.253.118 gist.github.com
 192.30.253.119 gist.github.com
+
+
+199.27.79.249                cloud-cdn-digitalocean-com.global.ssl.fastly.net
