@@ -1,9 +1,6 @@
 #!/bin/bash
 
 function config() {
-    cp zshrc ~/.zshrc
-
-	sudo wget -nv -O - https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 
     git clone https://github.com/clvv/fasd.git
     cd fasd
@@ -18,6 +15,10 @@ function config() {
 }
 
 
+sudo cat ./hosts >> /etc/hosts
 sudo apt install -y libncurses5-dev zsh
 
-config
+sudo wget -nv -O - https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+
+# cp zshrc ~/.zshrc
+# config

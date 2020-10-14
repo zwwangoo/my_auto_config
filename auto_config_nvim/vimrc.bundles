@@ -91,7 +91,7 @@ call plug#begin('$HOME/.config/nvim/plugged')
     Plug 'tell-k/vim-autopep8'
     " let g:neomake_python_enabled_makers = ['flake8']
     " let g:autopep8_on_save = 0
-     let g:autopep8_disable_show_diff=1
+    let g:autopep8_disable_show_diff=1
     autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
     let g:flake8_max_line_length = 120
