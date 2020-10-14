@@ -40,12 +40,8 @@
  
     " Or if you have Neovim >= 0.1.5
     if (has("termguicolors"))
-     set termguicolors
+      set termguicolors
     endif
- 
-    " Theme
-    syntax enable
-    colorscheme OceanicNext
     
 	" if filereadable(expand('$HOME/.config/nvim/colors/jellybeans.vim'))
     "     colorscheme jellybeans
@@ -74,9 +70,9 @@
     " set mouse=a
     " set selection=exclusive
     " set selectmode=mouse,key
-    if has("autocmd")
-        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    endif
+	" if has("autocmd")
+    "     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    " endif
 " }}}
 
 " {{{

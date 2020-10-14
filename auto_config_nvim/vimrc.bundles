@@ -22,10 +22,13 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
     " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
     " found' messages
-    let g:python_host_prog=$HOME."/.pyenv/versions/neovim2/bin/python"
-    let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python"
+    " let g:python_host_prog=$HOME."/.pyenv/versions/neovim2/bin/python"
+    " let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python"
 
-    set shortmess+=c
+    let g:python_host_prog="/usr/bin/python"
+    let g:python3_host_prog="/usr/bin/python3"
+
+	set shortmess+=c
     inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
     " Use <TAB> to select the popup menu:
@@ -55,7 +58,7 @@ call plug#begin('$HOME/.config/nvim/plugged')
     let NERDTreeShowHidden=1
     let NERDTreeAutoDeleteBuffer=1
     let g:nerdtree_tabs_open_on_console_startup=0
-    let g:NERDTreeIndicatorMapCustom = {
+	let g:NERDTreeGitStatusIndicatorMapCustom = {
         \ "Modified"  : ">",
         \ "Staged"    : "+",
         \ "Untracked" : "-",
@@ -83,8 +86,8 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
 " python {{{
 
-    Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
-    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+	Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug']  }
     " Plug 'neomake/neomake'
     Plug 'nvie/vim-flake8'
     Plug 'w0rp/ale'
@@ -175,11 +178,35 @@ call plug#begin('$HOME/.config/nvim/plugged')
     let g:jedi#popup_on_dot = 0
     " Plug 'mattn/emmet-vim'
 " }}}
-" {{{
-	Plug 'tamlok/vim-markdown'
+" {{{ 样式
 	Plug 'mhartington/oceanic-next'
 	let g:airline_theme='oceanicnext'
+ 
+    " Theme
+    syntax enable
 
+" }}}
+
+" {{{
+	Plug 'prettier/vim-prettier', {
+	  \ 'do': 'yarn install',
+	  \ 'branch': 'release/1.x',
+	  \ 'for': [
+		\ 'javascript',
+		\ 'typescript',
+		\ 'css',
+		\ 'less',
+		\ 'scss',
+		\ 'json',
+		\ 'graphql',
+		\ 'markdown',
+		\ 'vue',
+		\ 'lua',
+		\ 'php',
+		\ 'python',
+		\ 'ruby',
+		\ 'html',
+		\ 'swift' ] }
 " }}}
 
 call plug#end()

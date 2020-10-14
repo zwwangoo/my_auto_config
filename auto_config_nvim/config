@@ -1,14 +1,18 @@
 #!/bin/bash
 
-sudo apt install neovim xclip ack curl
+sudo apt install neovim xclip ack curl python3-pip -y
 
 mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.config/nvim/colors
 echo '[flake8]\nmax-line-length = 120' > $HOME/.config/flake8
+mkdir -p $HOME/.undodir
 
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp ./jellybeans.vim $HOME/.config/nvim/colors
 cp ./init.vim $HOME/.config/nvim
 cp ./vimrc.bundles $HOME/.config/nvim
+
+pip install yarp jedi neovim pynvim flake8 autopep8 -i https://pypi.douban.com/simple
+pip3 install yarp jedi neovim pynvim flake8 autopep8 -i https://pypi.douban.com/simple
 
 nvim +PlugInstall +qall
