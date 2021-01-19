@@ -4,7 +4,7 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
     Plug 'ncm2/ncm2'
     Plug 'roxma/nvim-yarp'
-    " Plug 'ncm2/ncm2-github'
+    Plug 'ncm2/ncm2-github'
     Plug 'ncm2/ncm2-bufword'
     Plug 'ncm2/ncm2-jedi'
     Plug 'ncm2/ncm2-path'
@@ -86,13 +86,13 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
 " python {{{
 
-    " Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+    Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 	Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug']  }
-    " Plug 'neomake/neomake'
+    Plug 'neomake/neomake'
     Plug 'nvie/vim-flake8'
     Plug 'w0rp/ale'
     Plug 'tell-k/vim-autopep8'
-    " let g:neomake_python_enabled_makers = ['flake8']
+    let g:neomake_python_enabled_makers = ['flake8']
     " let g:autopep8_on_save = 0
     let g:autopep8_disable_show_diff=1
     autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
@@ -108,19 +108,19 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
 " other {{{  状态栏
 "
-    " Plug 'vim-airline/vim-airline'
-    " Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     " " 折叠
-    " Plug 'tmhedberg/SimpylFold'
-    " " Plug 'kien/ctrlp.vim'
-    " let g:ale_sign_column_always = 1
-    " set laststatus=2
-    " " set t_Co=256
-    " " let g:airline_powerline_fonts=1
-    " let g:airline_theme='cool'
-    " let g:airline_left_sep='>'
-    " let g:nerdtree_tabs_open_on_gui_startup=1
-    " let g:SimpyFold_docstring_preview=1
+    Plug 'tmhedberg/SimpylFold'
+    Plug 'kien/ctrlp.vim'
+    let g:ale_sign_column_always = 1
+    set laststatus=2
+    " set t_Co=256
+    " let g:airline_powerline_fonts=1
+    let g:airline_theme='cool'
+    let g:airline_left_sep='>'
+    let g:nerdtree_tabs_open_on_gui_startup=1
+    let g:SimpyFold_docstring_preview=1
 " }}}
 
 " vim-fugitive {{{  git log
@@ -163,7 +163,7 @@ call plug#begin('$HOME/.config/nvim/plugged')
     " Plug 'zxqfl/tabnine-vim'
 
 " {{{ vim-wakatime  about https://wakatime.com/vim
-    " Plug 'wakatime/vim-wakatime'
+    Plug 'wakatime/vim-wakatime'
 " }}}
 
 " {{{ 自动引号&括号补全
@@ -176,7 +176,7 @@ call plug#begin('$HOME/.config/nvim/plugged')
     let g:jedi#use_splits_not_buffers = "winwidth" " 打开窗口在top left right bottom
     let g:jedi#goto_definitions_command = ""  " 默认的 <leader>s 键和vim-fugitive的键冲突，所以不设置
     let g:jedi#popup_on_dot = 0
-    " Plug 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim'
 " }}}
 " {{{ 样式
 	Plug 'mhartington/oceanic-next'

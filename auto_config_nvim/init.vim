@@ -43,8 +43,12 @@
       set termguicolors
     endif
     
-	" if filereadable(expand('$HOME/.config/nvim/colors/jellybeans.vim'))
-    "     colorscheme jellybeans
+	if filereadable(expand('$HOME/.config/nvim/colors/jellybeans.vim'))
+        colorscheme jellybeans
+    endif
+
+	" if filereadable(expand('$HOME/.config/nvim/plugged/oceanic-next/colors/OceanicNext.vim'))
+    "     colorscheme OceanicNext
     " endif
 
     if has("syntax")
